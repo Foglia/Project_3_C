@@ -2,6 +2,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import React from 'react';
 
+
 function AddUserProfile(props) {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -14,7 +15,6 @@ function AddUserProfile(props) {
 
   const handleFirstName = (e) => setFirstName(e.target.value);
   const handleLastName = (e) => setLastName(e.target.value);
-  const handleImageUrl = (e) => setImageUrl(e.target.value);
   const handleGender = (e) => setGender(e.target.value);
   const handleLocation = (e) => setLocation(e.target.value);
   const handleAboutMe = (e) => setAboutMe(e.target.value);
@@ -23,12 +23,12 @@ function AddUserProfile(props) {
     try {
       setLoading(true);
       const uploadData = new FormData();
-      uploadData.append('image', e.target.files[0]);
+      uploadData.append('ImageUrl', e.target.files[0]);
 
       const response = await axios.post(`${process.env.REACT_APP_API_URL}/upload`, uploadData);
 
       console.log(response.data.imageUrl);
-     /*  setImage(response.data.imageUrl); */
+     setImageUrl(response.data.imageUrl);
       setLoading(false)
       ;
     } catch (error) {
@@ -74,7 +74,8 @@ return (
         <input type="text" name="lastName" value={lastName} onChange={handleLastName} />
         <label htmlFor="title">Gender</label>
         <input type="text" name="firstName" value={gender} onChange={handleGender} />
-
+        <label htmlFor="title">Location</label>
+        <input type="text" name="firstName" value={location} onChange={handleLocation} />
 
        <textarea
           name="description"
