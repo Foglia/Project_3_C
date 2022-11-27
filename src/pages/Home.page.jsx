@@ -4,7 +4,7 @@ function Home() {
   return (
     <div>
     <h1>
-        Lisbon EVENTS - A platform to connect and Inform
+    Lisbon EVENTS - A platform to connect and Inform
     </h1>
     </div>
   )
