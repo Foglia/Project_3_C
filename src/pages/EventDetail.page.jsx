@@ -6,7 +6,7 @@ import axios from "axios"
 function EventDetail() {
     const [event, setEvent] = useState (null)
 
-    const {Name } = useParams();
+    const { Name } = useParams();
 
     const getEvent = async () => {
         try {
@@ -22,7 +22,7 @@ console.log(response.data)
     useEffect (() => {
 
         getEvent()
-    }, {})
+    }, [])
 
   return (
     <div className= "EventDetails">

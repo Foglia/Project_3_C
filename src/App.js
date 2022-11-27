@@ -2,7 +2,7 @@ import './App.css';
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import AddUserProfile from './components/AddUserProfile.component';
-import EditUserProfile from './components/EditUserProfile.component.jsx';
+import EditUserProfile from './components/EditUserProfile.component';
 import EventDetail from './pages/EventDetail.page';
 
 
@@ -23,7 +23,6 @@ function App() {
         <Route path="/profile" element={<AddUserProfile />} />
         <Route path="/edit-profile" element={<EditUserProfile />} />
         <Route path="/events/search" element={<EventDetail />} />
-
       </Routes>
     </div>
   );
