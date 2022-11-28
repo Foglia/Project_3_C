@@ -4,13 +4,15 @@ import { useParams } from "react-router-dom"
 import axios from "axios"
 
 
+
 function EventDetail() {
-    const [event, setEvent] = useState (null)
-    const {Name} = useParams();
+    const [event, setEvent] = useState ([])
+    const {id} = useParams();
 
     const getEvent = async () => {
         try {
-const response = await axios.get(`${process.env.REACT_APP_API_URL}/events/search/${Name}`)
+/* const response = await axios.get(`${process.env.REACT_APP_API_URL}/events/search/${Name}`) */
+ const response = await axios.get('http://culturaportugal.gov.pt/umbraco/api/eventsapi/GetEvents');
 
 setEvent(response.data)
 console.log(response.data)
@@ -21,13 +23,14 @@ console.log(response.data)
 
     useEffect (() => {
     getEvent()
-    }, {})
+    }, [])
+   
 
   return (
     <div className= "EventDetails">
      {event && (
         <>
-<h1> {event.Name}</h1>
+<h1> {event.title}</h1>
 <p>{event.Location}</p>
         </>
      )}

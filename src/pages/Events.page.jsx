@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useState, useEffect }  from 'react';
 
 function Events() {
-  console.log('Event')  
+  console.log('Events')  
   const [events, setEvents] = useState([]);  
   const getFromApi = async () => {
     try {
