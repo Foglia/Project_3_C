@@ -4,7 +4,6 @@ import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../contexts/auth.context';
 
-
 function Login(props) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -31,8 +30,7 @@ function Login(props) {
       //redirect
       navigate('/events');  
     } catch(error) {
-      const errorDescription = error.response.data.message; //at the server folder we have already specified the error messages, they would be recalled here  
-      setErrorMessage(errorDescription);  
+      console.log(error)
     }
   };
 

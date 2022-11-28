@@ -14,7 +14,7 @@ function Navbar() {
         <button>Home</button>
      </Link>
  
-   {loggedIn &&  (
+  {loggedIn &&  (
     <>
     <Link to="/events">
      <button>Events</button>
