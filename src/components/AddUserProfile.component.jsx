@@ -68,28 +68,24 @@ function AddUserProfile(props) {
 return (
     <div className="AddUserProfile">
       <form onSubmit={handleSubmit}>
-        <label htmlFor="title">First Name</label>
+        <label htmlFor="firstName">First Name</label>
         <input type="text" name="firstName" value={firstName} onChange={handleFirstName} />
-        <label htmlFor="FirstName">Last Name</label>
+        <label htmlFor="lastName">Last Name</label>
         <input type="text" name="lastName" value={lastName} onChange={handleLastName} />
-        <label htmlFor="title">Gender</label>
-        <input type="text" name="firstName" value={gender} onChange={handleGender} />
-        <label htmlFor="title">Location</label>
-        <input type="text" name="firstName" value={location} onChange={handleLocation} />
-
-       <textarea
-          name="description"
+        <label htmlFor="gender">Gender</label>
+        <input type="text" name="gender" value={gender} onChange={handleGender} />
+        <label htmlFor="location">Location</label>
+        <input type="text" name="location" value={location} onChange={handleLocation} />
+        <textarea
+          name="aboutMe"
           value={aboutMe}
           cols="30"
           rows="10"
-          onChange={handleAboutMe}
         ></textarea> 
-
-        <label htmlFor="image">Project Image</label>
-        <input type="file" name="image" onChange={handleUpload} />
-
+        <label htmlFor="imageUrl">User Image</label>
+        <input type="file" name="imageUrl" value={imageUrl} onChange={handleImageUrl} />
+        </form>
         {loading ? <p>Loading...</p> : <button to="/profile/:id" type="submit">Add Profile</button>}
-      </form>
     </div>
   );
 }
