@@ -1,16 +1,18 @@
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link, useParams } from "react-router-dom";
 import { useContext } from 'react';
 import { AuthContext } from '../contexts/auth.context';
 
 // Context specifies 
 function Navbar() {
   const { loggedIn, user, logout } = useContext(AuthContext);
+  const {id} = useParams();
 
   return (
     <nav>
       <Link to="/">
         <button>Home</button>
-      </Link>
+     </Link>
  
    {loggedIn &&  (
     <>
@@ -18,7 +20,7 @@ function Navbar() {
      <button>Events</button>
     </Link>
     <button onClick={logout}>Logout</button>
-    <h3>Hello {user.email}!</h3>
+    <h3>Hello <Link to={`/profile/${user._id}`}>{user.email}!</Link></h3>
     </>
   )}
 

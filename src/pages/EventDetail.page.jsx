@@ -1,3 +1,4 @@
+import React from 'react';
 import { useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
 import axios from "axios"
@@ -5,8 +6,7 @@ import axios from "axios"
 
 function EventDetail() {
     const [event, setEvent] = useState (null)
-
-    const {Name } = useParams();
+    const {Name} = useParams();
 
     const getEvent = async () => {
         try {
@@ -20,8 +20,7 @@ console.log(response.data)
     }
 
     useEffect (() => {
-
-        getEvent()
+    getEvent()
     }, {})
 
   return (

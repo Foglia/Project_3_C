@@ -1,16 +1,15 @@
+import React from 'react';
 import axios from 'axios';
 import { useState, useEffect }  from 'react';
 
-const API_URL = "http://localhost:5005";
-
-
 function Events() {
-  const [events, setEvents] = useState([null]);  
+  console.log('Event')  
+  const [events, setEvents] = useState([]);  
   const getFromApi = async () => {
     try {
-      const get =  axios.get(`${API_URL}/api/events`)
-      const response = await axios.get('https://dados.gov.pt/pt/datasets/r/588d5c20-0851-4c34-b5da-dcb1239e7bca');
-      setEvents('events', response.data);
+      const response =  axios.get(`${process.env.REACT_APP_API_URL}/events`)
+      // const response = await axios.get('http://culturaportugal.gov.pt/umbraco/api/eventsapi/GetEvents');
+      setEvents(response.data);
     } catch(error) {
       console.log(error)
     }
@@ -20,17 +19,16 @@ function Events() {
   getFromApi();
   },[]);
 
+
+  // Fazer MAP PARA RETORNAR EVENTOS ///
   return (
     <div className='HeadEvent'>
-      <h1>Events Gallery</h1>   
-   <div>
-    {events.map((event) => {
-        return (
-   <div className='Events'>
+    <h1>Events</h1>   
+    <div>  
+     <div className='Events'>
+     <h3>{events.title}</h3>
      <img src={events.ImageUrl} alt="event poster" />
     </div>
-    )
-})}
     </div>
     </div>
   );
