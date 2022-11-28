@@ -6,7 +6,7 @@ import { AuthContext } from '../contexts/auth.context';
 // Context specifies 
 function Navbar() {
   const { loggedIn, user, logout } = useContext(AuthContext);
-  const {id} = useParams();
+  const {_id} = useParams();
 
   return (
     <nav>

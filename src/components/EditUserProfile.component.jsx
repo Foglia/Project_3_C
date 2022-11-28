@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios'
 import { useState, useEffect} from 'react'
 import { useParams, useNavigate } from "react-router-dom"
+import service from "../api/service";
 
 function EditUserProfile() {
     const [firstName, setFirstName] = useState('');
@@ -9,7 +10,7 @@ function EditUserProfile() {
     const [gender, setGender] = useState('');
     const [location, setLocation] = useState('');
     const [aboutMe, setAboutMe] = useState('');
-    const [loading, setLoading] = useState(false)
+    const [loading, setIsUploading] = useState(false)
     const [imageUrl, setImageUrl] = useState('');
 
     const handleFirstName = (e) => setFirstName(e.target.value);
@@ -17,38 +18,37 @@ function EditUserProfile() {
     const handleGender = (e) => setGender(e.target.value);
     const handleLocation = (e) => setLocation(e.target.value);
     const handleAboutMe = (e) => setAboutMe(e.target.value);
-    const handleImageUrl = (e) => setAboutMe(e.target.value);
 
-    const handleUpload = async (e) => {
-    try {
-      // setLoading(true);
-      setImageUrl(e.target.files[0])
-      const formData = new FormData()
-      formData.append('imageUrl', );
+    const storedToken = localStorage.getItem('authToken');  
 
-      const response = await axios.post(`${process.env.REACT_APP_API_URL}/upload/${id}`, formData);
-      setImageUrl(response.data.imageUrl); 
-      setLoading(false)
-      ;
-    } catch (error) {
-      console.log(error);
-      setLoading(false);
-    }
-  };
+    const handleFileUpload = (e) => {
+      const uploadData = new FormData();
+      setIsUploading(true);
+      uploadData.append("imageUrl", e.target.files[0]);
+  
+      service
+        .uploadImage(uploadData)
+        .then((response) => {
+          setIsUploading(false);
+          setImageUrl(response.fileUrl);
+        })
+        .catch((err) => console.log(err));
+    }; 
+
 
   const {id} = useParams()
   const navigate = useNavigate()
 
   const getProfile = async () => {
     try {
-    const response = await axios.get(`${process.env.REACT_APP_API_URL}/edit-profile/${id}`)
+    const response = await axios.get(`${process.env.REACT_APP_API_URL}/profile/${id}`,{ headers: { Authorization: `Bearer ${storedToken}`}
+  })
 
     setFirstName(response.data.firstName)
     setLastName(response.data.lastName)
     setGender(response.data.gender)
     setLocation(response.data.location)
     setAboutMe(response.data.aboutMe)
-    setImageUrl(response.data.imageUrl)
 
   } catch(error) {
     console.log(error)
@@ -56,23 +56,16 @@ function EditUserProfile() {
   };
 
     useEffect (() => {
-    getProfile() // CHANGE                                  
+    getProfile()                            
   }, [])
 
   const handleSubmit = async (e) => {
   e.preventDefault()
 
   try {
-    const storedToken = localStorage.getItem('authToken');  
+
     await axios.put(`${process.env.REACT_APP_API_URL}/edit-profile/${id}`, {firstName, lastName, gender, location, aboutMe, imageUrl }, { headers: { Authorization: `Bearer ${storedToken}`}
   });
-
-   setFirstName('')
-   setLastName('')
-   setGender('')
-   setLocation('')
-   setAboutMe('')
-   setImageUrl('')
 
    navigate(`/profile/${id}`)
 } catch(error) {
@@ -82,10 +75,9 @@ function EditUserProfile() {
 
 const deleteProfile = async () => {
     try {
-     const storedToken = localStorage.getItem('authToken');  
-     await axios.delete(`${process.env.REACT_APP_API_URL}/edit-profile/${id}`, { headers: { Authorization: `Bearer ${storedToken}`}
+     await axios.delete(`${process.env.REACT_APP_API_URL}/delete-profile/${id}`, { headers: { Authorization: `Bearer ${storedToken}`}
     });
-     navigate("/events")
+     navigate("/")
   } catch(error) {
      console.log(error)
   }
@@ -118,10 +110,10 @@ const deleteProfile = async () => {
         ></textarea> 
 
         <label htmlFor="imageUrl">Image</label>
-        <input type="file" name="imageUrl" value={imageUrl} onChange={handleImageUrl} />
-        <button onClick={handleUpload}>Submit</button>
+        <input type="file" name="imageUrl" onChange={handleFileUpload} />
 
-        {loading ? <p>Loading...</p> : <button to="/profile/:id"  type="submit">Edit Profile</button>}
+        {loading ? <p>Loading...</p> : <p></p> }
+        <button type="submit">Edit Profile</button>
      </form>
         <button onClick={deleteProfile}>Delete Profile</button>
     </div>

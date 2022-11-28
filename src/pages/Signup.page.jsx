@@ -20,7 +20,7 @@ function Signup(props) {
       //redirect
       navigate('/login');  
     } catch(error) {
-      const errorDescription = error.response.data.message; 
+      const errorDescription = error.response.data.message; //at the server folder we have already specified the error messages, they would be recalled here  
       setErrorMessage(errorDescription);  
     }
   };

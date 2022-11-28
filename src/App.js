@@ -3,7 +3,7 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 // import AddUserProfile from './components/AddUserProfile.component';
 import EditUserProfile from './components/EditUserProfile.component';
-// import EventDetail from './pages/EventDetail.page';
+import EventDetail from './pages/EventDetail.page';
 // import Comments from './components/Comments.component.jsx';
 import Navbar from './components/Navbar.component';
 import Home from './pages/Home.page';
@@ -36,11 +36,10 @@ function App() {
           <Private>
             <EditUserProfile />
           </Private>
-        } />
-
-        <Route path='/events' element={<Events />} />
-        <Route path="/events/create-comment/:id" element={<Comments />} />
-        <Route path='/community' element={<Community />} />
+        } />  
+      <Route path='/events' element={<Events />} />
+      <Route path='/community' element={<Community />}/>
+      <Route path='/events/search/:Name' element={<EventDetail />}/>
       </Routes>
     </div>
   );

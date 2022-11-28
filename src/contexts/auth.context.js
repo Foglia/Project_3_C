@@ -16,7 +16,7 @@ function AuthProviderWrapper(props) {
 
     const authenticateUser = async () => {
        try {
-       const storedToken = localStorage.getItem('authToken')
+       const storedToken = localStorage.getItem('authToken')  // rotas protegidas
 
        if(storedToken){
        const response = await axios.get(`${process.env.REACT_APP_API_URL}/verify`,  { 
