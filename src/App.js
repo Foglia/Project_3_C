@@ -4,7 +4,6 @@ import { Routes, Route } from 'react-router-dom';
 // import AddUserProfile from './components/AddUserProfile.component';
 import EditUserProfile from './components/EditUserProfile.component';
 import EventDetail from './pages/EventDetail.page';
-// import Comments from './components/Comments.component.jsx';
 import Navbar from './components/Navbar.component';
 import Home from './pages/Home.page';
 import Events from './pages/Events.page';
@@ -33,14 +32,17 @@ function App() {
         <Route path='/login' element={<Login />} />
         <Route path='/profile/:id' element={<UserProfile />} />
         <Route path='/events/create-comment/:id' element={<Comments />} />
+        <Route path='/events/delete-comment/:id' element={<Comments />} />
+        <Route path='/events/comment/:id' element={<Comments />} />
+
         <Route path='/edit-profile/:id' element={
           <Private>
             <EditUserProfile />
           </Private>
-        } />  
-      <Route path='/events' element={<Events />} />
-      <Route path='/community/:id' element={<Community />}/>
-      <Route path='/events/search/:Name' element={<EventDetail />}/>
+        } />
+        <Route path='/events' element={<Events />} />
+        <Route path='/community/:id' element={<Community />} />
+        <Route path='/events/search/:Name' element={<EventDetail />} />
       </Routes>
     </div>
   );

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 import React from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 function Comments(props) {
   const [title, setTitle] = useState('');
@@ -16,19 +16,29 @@ function Comments(props) {
     try { //passar rota authentication
       const storedToken = localStorage.getItem('authToken') 
       await axios.post(`${process.env.REACT_APP_API_URL}/events/${id}/create-comment`, { title, description }, { headers: { Authorization: `Bearer ${storedToken}`}});
-// call comment in the community 
-      await axios.get(`${process.env.REACT_APP_API_URL}/comment/${id}/create-comment`, { title, description }, { headers: { Authorization: `Bearer ${storedToken}`}});
-
       setTitle('');
       setDescription(''); 
  
-      
+
       props.refreshComments();
    
     } catch (error) {
       console.log(error);
     }
   };
+
+  const deleteComment = async () => {
+    try {
+      const storedToken = localStorage.getItem('authToken') 
+      await axios.delete(`${process.env.REACT_APP_API_URL}/events/delete-comment/${id}`, { title, description }, { headers: { Authorization: `Bearer ${storedToken}`}});
+
+    } catch (error) {
+      console.log(error)
+      
+    }
+  }
+
+
 
   return (
     <div className="AddComment">
@@ -44,6 +54,8 @@ function Comments(props) {
           onChange={handleDescription}
         ></textarea>
          <button type="submit">Add comment</button>
+         <button onClick={deleteComment}>Delete Comment</button>
+        {/*  <button onClick={showComments}> Show </button> */}
       </form>
     </div>
   );

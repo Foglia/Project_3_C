@@ -3,11 +3,11 @@ import { useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
 import axios from "axios"
 import Comments from '../components/Comments.component'
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 
 
-function Community() {
+
  /* const [users, setUsers] = useState();
   const {_id} = useParams();
   const getUsers = async () => {
@@ -23,32 +23,48 @@ function Community() {
     getUsers();
   }, [])
   }  */ 
-
-
   
-    const [event, setEvent] = useState ([])  //Mudar sempre o Use State para testas
-    const {id} = useParams();
+  /*   const [event, setEvent] = useState ([])  */ //Mudar sempre o Use State para testas
+  function Community() {
+  const [event, setEvent] = useState(null)
+  const {id} = useParams();
 
-    const getEvent = async () => {
-    try {
-    const response = await axios.get(`${process.env.REACT_APP_API_URL}/events/${id}`)
-    setEvent(response.data)
-    console.log(response.data)
-    } catch(error) {
-    console.log(error)
+    const showComments = async () => {
+      try {
+        const storedToken = localStorage.getItem('authToken') 
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/community/${id}`, { headers: { Authorization: `Bearer ${storedToken}`}});
+        setEvent(response.data) 
+        console.log(response.data)
+       /*  navigate("/events/comment/");  */  
+      } catch (error) {
+   
+      }
     }
-  }
     useEffect (() => {
-    getEvent()
-    }, [])
-
+      showComments();
+      
+      }, [])
+     
+      
 
   return (
     <div className="Community">
-      {/* <Link to={"events/create-comment/"}>
-     <button>Comment</button>
-     </Link> */}
-     <Comments />
+      {/* {event && event.attendance.map((commentShow)=>{ */}
+      {event && event.comments.map((commentShow)=>{
+        return (
+          <div key={commentShow._id}>
+            <p>{commentShow._id[5]}</p>
+            </div>
+        )
+      })} 
+      <div>
+{/*         {event && event.map(())} */}
+      </div>
+      {/* <h1>{comment.title}</h1> */}
+
+     <Comments/> {/* = {showComments}/> */}
+
+
     
        {/* {users.map((user) => { */}
       {/*   return ( */}
