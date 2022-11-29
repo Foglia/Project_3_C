@@ -49,6 +49,7 @@ function EditUserProfile() {
     setGender(response.data.gender)
     setLocation(response.data.location)
     setAboutMe(response.data.aboutMe)
+    setImageUrl(response.data.imageUrl)
 
   } catch(error) {
     console.log(error)

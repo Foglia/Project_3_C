@@ -19,6 +19,9 @@ function Navbar() {
     <Link to="/events">
      <button>Events</button>
     </Link>
+    <Link to={`/profile/${user._id}`}>
+     <button>Your Profile</button>
+    </Link>
     <button onClick={logout}>Logout</button>
     <h3>Hello <Link to={`/profile/${user._id}`}>{user.email}!</Link></h3>
     </>

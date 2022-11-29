@@ -27,24 +27,38 @@ const getUser = async() => {
     <div className="UserProfile">
     {user && (
     <>
-    <h3>UserProfile</h3>
-    <p>{user.email}</p>
     <img src={user.imageUrl} alt="personal photo"/>
-    <p>{user.firstName}</p>
-    <p>{user.lastName}</p>
-    <p>{user.gender}</p>
-    <p>{user.location}</p>
-    <p>{user.aboutMe}</p>
+    <p>Nome: {user.firstName}</p>
+    <p>Apelido: {user.lastName}</p>
+    <p>Género: {user.gender}</p>
+    <p>Cidade: {user.location}</p>
+    <p>Sobre {user.email}: {user.aboutMe}</p>
     </>
-    
     )}
+
     {user && (
-    <>   
-    <Link to={`/edit-profile/${id}`}>
-    <button type="submit">Edit Profile</button>
+    <>
+    <Link to={`/edit-profile/${user._id}`}>
+     <button>Edit your Profile</button>
     </Link>
     </>
     )}
+{/* 
+    {user.favorite.map((favs) => (    
+    <li className="Favs" key={id}>
+      <h3>{[user.favs]}</h3>
+    </li>
+    ))
+    }
+
+    {user.atendeeEvent.map((atendee) => (   
+    <li className="Antendee" key={atendee._id}>
+        <h3>Eventos</h3>
+        <h3>{[user.atendee]}</h3>
+    </li>
+    ))
+    } */}
+
     </div>
   )
 }
