@@ -14,8 +14,10 @@ function Comments(props) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try { //passar rota authentication
-      await axios.post(`${process.env.REACT_APP_API_URL}/events/${id}/create-comment`, { title, description });
+      const storedToken = localStorage.getItem('authToken') 
+      await axios.post(`${process.env.REACT_APP_API_URL}/events/${id}/create-comment`, { title, description }, { headers: { Authorization: `Bearer ${storedToken}`}});
 // call comment in the community 
+      await axios.get(`${process.env.REACT_APP_API_URL}/comment/${id}/create-comment`, { title, description }, { headers: { Authorization: `Bearer ${storedToken}`}});
 
       setTitle('');
       setDescription(''); 
