@@ -1,14 +1,16 @@
 import React from 'react';
 import { useState, useEffect } from "react"
-import { Link, useParams } from "react-router-dom"
+import { Link, useNavigate, useParams } from "react-router-dom"
 import axios from "axios"
 import Community from './Community';
+
 
 
 
 function EventDetail() {
     const [event, setEvent] = useState ({})  //Mudar sempre o Use State para testas
     const {Name} = useParams();
+   const navigate = useNavigate();
 
     const getEvent = async () => {
     try {
@@ -23,17 +25,55 @@ function EventDetail() {
     getEvent()
     }, [])
 
+    // this will create event ID 
+    const createEvent = async () => {
+      try {
+        const storedToken = localStorage.getItem('authToken') 
+        const response = await axios.post(`${process.env.REACT_APP_API_URL}/event-search?Name=${Name}`, null,
+         { headers: { Authorization: `Bearer ${storedToken}` } // sempre 3 arg num post e put  
+   })
+        const event = response.data
+        return event;
+      } catch (error) {
+        console.log(error)
+      }
+    }
+
+  // this will call route to favs 
+  // needs to call the create event
+
+    const addFavourite = async () => {
+      try {
+        const storedToken = localStorage.getItem('authToken') 
+        const event = await createEvent()
+        await axios.put(`${process.env.REACT_APP_API_URL}/events/favorite/${event._id}`, null, { headers: { Authorization: `Bearer ${storedToken}`}})
+        navigate(`/community/${event._id}`) 
+      } catch (error) {
+        console.log(error)
+      }
+    }
+
+    const addAttendance = async () => {
+      try {
+        const storedToken = localStorage.getItem('authToken') 
+        const event = await createEvent()
+        await axios.put(`${process.env.REACT_APP_API_URL}/events/attend/${event._id}`, null, { headers: { Authorization: `Bearer ${storedToken}`}})
+        navigate(`/community/${event._id}`) 
+      } catch (error) {
+        console.log(error)
+      }
+    }
+   
 return (
     <div className= "EventDetails">
           <h1>{event.Name}</h1> 
      < img src= {event.ImageUrl} />
-     <Link to={"/src/pages/Community"}>
-     <button>Atendance</button>
-     </Link>
+  
+     <button onClick={addAttendance}>Atendance</button>
+  
 
-     <Link to={"/events/create-comment/:id"}>
-     <button>Favourite</button>
-     </Link>
+
+     <button onClick={addFavourite}> Favourite </button> {/* botao funcional */}
     </div>
   )
 }

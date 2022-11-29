@@ -39,7 +39,7 @@ function App() {
           </Private>
         } />  
       <Route path='/events' element={<Events />} />
-      <Route path='/community' element={<Community />}/>
+      <Route path='/community/:id' element={<Community />}/>
       <Route path='/events/search/:Name' element={<EventDetail />}/>
       </Routes>
     </div>

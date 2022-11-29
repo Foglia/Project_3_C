@@ -27,11 +27,11 @@ function Community() {
 
   
     const [event, setEvent] = useState ([])  //Mudar sempre o Use State para testas
-    const {Name} = useParams();
+    const {id} = useParams();
 
     const getEvent = async () => {
     try {
-    const response = await axios.get(`${process.env.REACT_APP_API_URL}/community`)
+    const response = await axios.get(`${process.env.REACT_APP_API_URL}/events/${id}`)
     setEvent(response.data)
     console.log(response.data)
     } catch(error) {
@@ -45,9 +45,10 @@ function Community() {
 
   return (
     <div className="Community">
-      <Link to={"events/create-comment/"}>
+      {/* <Link to={"events/create-comment/"}>
      <button>Comment</button>
-     </Link>
+     </Link> */}
+     <Comments />
     
        {/* {users.map((user) => { */}
       {/*   return ( */}

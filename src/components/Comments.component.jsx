@@ -1,29 +1,26 @@
 import { useState } from 'react';
 import axios from 'axios';
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 function Comments(props) {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
-
-  const navigate = useNavigate();
+  const { id } = useParams()
   const handleTitle = (e) => setTitle(e.target.value);
   const handleDescription = (e) => setDescription(e.target.value);
   
 
-
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      await axios.post(`${process.env.REACT_APP_API_URL}/events/create-comment/:id`, { title, description });
-
+    try { //passar rota authentication
+      await axios.post(`${process.env.REACT_APP_API_URL}/events/${id}/create-comment`, { title, description });
+// call comment in the community 
 
       setTitle('');
       setDescription(''); 
  
-      navigate('/delete-comment');  
+      
       props.refreshComments();
    
     } catch (error) {
@@ -44,7 +41,7 @@ function Comments(props) {
           rows="10"
           onChange={handleDescription}
         ></textarea>
-         {<button to= "/event/:id" type="submit">Add comment</button>}
+         <button type="submit">Add comment</button>
       </form>
     </div>
   );
