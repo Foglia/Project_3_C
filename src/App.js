@@ -32,7 +32,8 @@ function App() {
         } />
         <Route path='/login' element={<Login />} />
         <Route path='/profile/:id' element={<UserProfile />} />
-        <Route path="/edit-profile/:id" element={
+        <Route path='/events/create-comment/:id' element={<Comments />} />
+        <Route path='/edit-profile/:id' element={
           <Private>
             <EditUserProfile />
           </Private>

@@ -1,24 +1,31 @@
 import { useState } from 'react';
 import axios from 'axios';
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function Comments(props) {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
 
+  const navigate = useNavigate();
   const handleTitle = (e) => setTitle(e.target.value);
   const handleDescription = (e) => setDescription(e.target.value);
+  
+
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(`${process.env.REACT_APP_API_URL}/events/create-comment/:id'`, { title, description });
+      await axios.post(`${process.env.REACT_APP_API_URL}/events/create-comment/:id`, { title, description });
+
 
       setTitle('');
-      setDescription('');
-
-
+      setDescription(''); 
+ 
+      navigate('/delete-comment');  
       props.refreshComments();
+   
     } catch (error) {
       console.log(error);
     }
@@ -37,7 +44,7 @@ function Comments(props) {
           rows="10"
           onChange={handleDescription}
         ></textarea>
-         {<button to= "/event/:id"  type="submit">Add comment</button>}
+         {<button to= "/event/:id" type="submit">Add comment</button>}
       </form>
     </div>
   );

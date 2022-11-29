@@ -1,7 +1,8 @@
 import React from 'react';
 import { useState, useEffect } from "react"
-import { useParams } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import axios from "axios"
+import Community from './Community';
 
 
 
@@ -25,6 +26,14 @@ function EventDetail() {
 return (
     <div className= "EventDetails">
           <h1>{event.Name}</h1> 
+     < img src= {event.ImageUrl} />
+     <Link to={"/src/pages/Community"}>
+     <button>Atendance</button>
+     </Link>
+
+     <Link to={"/events/create-comment/:id"}>
+     <button>Favourite</button>
+     </Link>
     </div>
   )
 }
