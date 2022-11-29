@@ -12,8 +12,6 @@ function Comments(props) {
   const handleDescription = (e) => setDescription(e.target.value);
   
 
-
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {

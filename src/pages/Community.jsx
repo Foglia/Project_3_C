@@ -45,7 +45,7 @@ function Community() {
 
   return (
     <div className="Community">
-      <Link to={"events/create-comment/"}>
+     <Link to={"events/create-comment/"}>
      <button>Comment</button>
      </Link>
     

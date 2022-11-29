@@ -2,13 +2,15 @@ import React from 'react';
 import { useState, useEffect } from "react"
 import { Link, useParams } from "react-router-dom"
 import axios from "axios"
-import Community from './Community';
+// import Community from './Community';
+// import Attendance from '../components/Attendance';
 
 
 
 function EventDetail() {
     const [event, setEvent] = useState ({})  //Mudar sempre o Use State para testas
     const {Name} = useParams();
+    const {id} = useParams();
 
     const getEvent = async () => {
     try {
@@ -26,12 +28,14 @@ function EventDetail() {
 return (
     <div className= "EventDetails">
           <h1>{event.Name}</h1> 
-     < img src= {event.ImageUrl} />
-     <Link to={"/src/pages/Community"}>
+          <img src= {event.ImageUrl} />
+     <Link to={`/src/pages/community/${id}`}>
+     {/* <Link to={"/events/create-comment/:id"}> */}
      <button>Atendance</button>
+     {/* </Link> */}
      </Link>
-
-     <Link to={"/events/create-comment/:id"}>
+     {/* <Attendance /> */}
+     <Link to={`events/favorite/${id}`}>
      <button>Favourite</button>
      </Link>
     </div>

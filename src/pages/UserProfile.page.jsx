@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react'; //Need to map 
 import { useParams } from 'react-router-dom'; //to return DB params
+// import Favorite from '../components/Favorite';
 
 function UserProfile() {
 const [user, setUser] = useState()
@@ -35,6 +36,10 @@ const getUser = async() => {
     <p>Sobre {user.email}: {user.aboutMe}</p>
     </>
     )}
+{/* 
+    <div className='Favorite'>
+    <Favorite />
+    </div> */}
 
     {user && (
     <>
@@ -43,24 +48,9 @@ const getUser = async() => {
     </Link>
     </>
     )}
-{/* 
-    {user.favorite.map((favs) => (    
-    <li className="Favs" key={id}>
-      <h3>{[user.favs]}</h3>
-    </li>
-    ))
-    }
-
-    {user.atendeeEvent.map((atendee) => (   
-    <li className="Antendee" key={atendee._id}>
-        <h3>Eventos</h3>
-        <h3>{[user.atendee]}</h3>
-    </li>
-    ))
-    } */}
-
-    </div>
-  )
+</div>
+)
 }
 
-export default UserProfile
+
+export default UserProfile;
