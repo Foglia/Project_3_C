@@ -6,8 +6,6 @@ import axios from "axios"
 // import Attendance from '../components/Attendance';
 
 
-
-
 function EventDetail() {
     const [event, setEvent] = useState ({})  //Mudar sempre o Use State para testas
     const {Name} = useParams();
@@ -48,7 +46,7 @@ function EventDetail() {
         const storedToken = localStorage.getItem('authToken') 
         const event = await createEvent()
         await axios.put(`${process.env.REACT_APP_API_URL}/events/favorite/${event._id}`, null, { headers: { Authorization: `Bearer ${storedToken}`}})
-        navigate(`/community/${event._id}`) 
+        // navigate(`/community/${event._id}`) 
       } catch (error) {
         console.log(error)
       }
@@ -68,10 +66,12 @@ function EventDetail() {
 return (
     <div className= "EventDetails">
           <h1>{event.Name}</h1> 
-     < img src= {event.ImageUrl} />
-  
-     <button onClick={addAttendance}>Atendance</button>
+          <h3>{event.Location}</h3>
+          <img src= {event.ImageUrl} />
+          <h6>Descrição</h6>
+          <p>{event.Text}</p>
 
+     <button onClick={addAttendance}>Atendance</button>
      <button onClick={addFavourite}> Favourite </button> {/* botao funcional */}
     </div>
   )

@@ -39,7 +39,6 @@ function Comments(props) {
   }
 
 
-
   return (
     <div className="AddComment">
       <form onSubmit={handleSubmit}>

@@ -3,11 +3,11 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react'; //Need to map 
 import { useParams } from 'react-router-dom'; //to return DB params
-// import Favorite from '../components/Favorite';
 
 function UserProfile() {
-const [user, setUser] = useState()
+const [user, setUser] = useState(null)
 const {id} = useParams();
+const {eventId} = useParams();
 
 const getUser = async() => {
   try {
@@ -15,7 +15,7 @@ const getUser = async() => {
     const response = await axios.get(`${process.env.REACT_APP_API_URL}/profile/${id}`, { headers: { Authorization: `Bearer ${storedToken}`} 
     });
     setUser(response.data);
-    console.log(response.data)
+    console.log(response.data);
   } catch(error) {
     console.log(error);  
   };
@@ -23,6 +23,7 @@ const getUser = async() => {
     useEffect(() => {
     getUser();
   }, []);  
+
 
   return (
     <div className="UserProfile">
@@ -36,10 +37,32 @@ const getUser = async() => {
     <p>Sobre {user.email}: {user.aboutMe}</p>
     </>
     )}
-{/* 
-    <div className='Favorite'>
-    <Favorite />
-    </div> */}
+
+    <div>
+    <h3>Favorites</h3>
+      {user && user.favorite.map((fav) => {
+        return (
+        <div key={fav._id}>
+        <h3>{fav.title}</h3>
+        <img href={fav.imageUrl} />
+        </div>
+        )}
+      )}
+    </div>
+
+    <div>
+    <h3>Attendance</h3>
+      {user && user.atendeeEvent.map((att) => {
+        return (
+        <div key={att._id}>
+        <Link to={`/events/${eventId}`}>
+        <img src={att.imageUrl} />
+        <h6>{att.title}</h6>
+        </Link>
+        </div>
+        )}
+      )}
+    </div>
 
     {user && (
     <>
