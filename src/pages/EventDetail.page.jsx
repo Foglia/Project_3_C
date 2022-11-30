@@ -58,7 +58,7 @@ function EventDetail() {
         const event = await createEvent()
         await axios.put(`${process.env.REACT_APP_API_URL}/events/attend/${event._id}`, null, { headers: { Authorization: `Bearer ${storedToken}`}
       })
-        navigate(`/community2/${event._id}`) 
+        navigate(`/community/${event._id}`) 
       } catch (error) {
         console.log(error)
       }
