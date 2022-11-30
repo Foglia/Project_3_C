@@ -13,7 +13,7 @@ function Comments(props) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try { //passar rota authentication
+    try { 
       const storedToken = localStorage.getItem('authToken') 
       await axios.post(`${process.env.REACT_APP_API_URL}/events/${id}/create-comment`, { title, description }, { headers: { Authorization: `Bearer ${storedToken}`}});
       setTitle('');
@@ -30,15 +30,14 @@ function Comments(props) {
   const deleteComment = async () => {
     try {
       const storedToken = localStorage.getItem('authToken') 
-      await axios.delete(`${process.env.REACT_APP_API_URL}/events/delete-comment/${id}`, { title, description }, { headers: { Authorization: `Bearer ${storedToken}`}});
+      await axios.delete(`${process.env.REACT_APP_API_URL}/events/${id}delete-comment/`, { headers: { Authorization: `Bearer ${storedToken}`}});
 
     } catch (error) {
       console.log(error)
       
     }
   }
-
-
+  
   return (
     <div className="AddComment">
       <form onSubmit={handleSubmit}>
@@ -54,7 +53,6 @@ function Comments(props) {
         ></textarea>
          <button type="submit">Add comment</button>
          <button onClick={deleteComment}>Delete Comment</button>
-        {/*  <button onClick={showComments}> Show </button> */}
       </form>
     </div>
   );
