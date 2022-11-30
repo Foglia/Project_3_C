@@ -7,7 +7,6 @@ import { Link, useParams } from 'react-router-dom'
 
 function Events() {
   const {id} = useParams()
-  console.log('events')
   const [events, setEvents] = useState([]); 
   const getFromBack = async () => {
     try {
@@ -42,6 +41,9 @@ function Events() {
     })}
 
     </div>
+
+    
+
   );
 }
 

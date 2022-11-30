@@ -9,7 +9,7 @@ import axios from "axios"
 function EventDetail() {
     const [event, setEvent] = useState ({})  //Mudar sempre o Use State para testas
     const {Name} = useParams();
-   const navigate = useNavigate();
+    const navigate = useNavigate();
 
     const getEvent = async () => {
     try {
@@ -46,7 +46,7 @@ function EventDetail() {
         const storedToken = localStorage.getItem('authToken') 
         const event = await createEvent()
         await axios.put(`${process.env.REACT_APP_API_URL}/events/favorite/${event._id}`, null, { headers: { Authorization: `Bearer ${storedToken}`}})
-        // navigate(`/community/${event._id}`) 
+        navigate(`/community/${event._id}`) 
       } catch (error) {
         console.log(error)
       }
@@ -56,8 +56,9 @@ function EventDetail() {
       try {
         const storedToken = localStorage.getItem('authToken') 
         const event = await createEvent()
-        await axios.put(`${process.env.REACT_APP_API_URL}/events/attend/${event._id}`, null, { headers: { Authorization: `Bearer ${storedToken}`}})
-        navigate(`/community/${event._id}`) 
+        await axios.put(`${process.env.REACT_APP_API_URL}/events/attend/${event._id}`, null, { headers: { Authorization: `Bearer ${storedToken}`}
+      })
+        navigate(`/community2/${event._id}`) 
       } catch (error) {
         console.log(error)
       }
@@ -72,9 +73,13 @@ return (
           <p>{event.Text}</p>
 
      <button onClick={addAttendance}>Atendance</button>
-     <button onClick={addFavourite}> Favourite </button> {/* botao funcional */}
+     <button onClick={addFavourite}> Favorite </button> {/* botao funcional */}
+
     </div>
+
   )
 }
+
+
 
 export default EventDetail;

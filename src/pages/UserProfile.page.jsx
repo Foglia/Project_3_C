@@ -2,16 +2,19 @@ import React from 'react'
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react'; //Need to map 
-import { useParams } from 'react-router-dom'; //to return DB params
+import { useParams, useNavigate } from 'react-router-dom'; //to return DB params
 
 function UserProfile() {
 const [user, setUser] = useState(null)
 const {id} = useParams();
 const {eventId} = useParams();
+const navigate = useNavigate();
+
+
+const storedToken = localStorage.getItem('authToken');  
 
 const getUser = async() => {
   try {
-    const storedToken = localStorage.getItem('authToken');  
     const response = await axios.get(`${process.env.REACT_APP_API_URL}/profile/${id}`, { headers: { Authorization: `Bearer ${storedToken}`} 
     });
     setUser(response.data);
@@ -24,6 +27,16 @@ const getUser = async() => {
     getUser();
   }, []);  
 
+  const deleteProfile = async () => {
+    try {
+     await axios.delete(`${process.env.REACT_APP_API_URL}/delete-profile/${id}`, { headers: { Authorization: `Bearer ${storedToken}`}
+    });
+    navigate("/")
+  } catch(error) {
+     console.log(error)
+  }
+};
+
 
   return (
     <div className="UserProfile">
@@ -34,7 +47,7 @@ const getUser = async() => {
     <p>Apelido: {user.lastName}</p>
     <p>Género: {user.gender}</p>
     <p>Cidade: {user.location}</p>
-    <p>Sobre {user.email}: {user.aboutMe}</p>
+    <p>Sobre {user.firstName}: {user.aboutMe}</p>
     </>
     )}
 
@@ -55,7 +68,7 @@ const getUser = async() => {
       {user && user.atendeeEvent.map((att) => {
         return (
         <div key={att._id}>
-        <Link to={`/events/${eventId}`}>
+        <Link to={`/community2/${id}`}>
         <img src={att.imageUrl} />
         <h6>{att.title}</h6>
         </Link>
@@ -69,6 +82,7 @@ const getUser = async() => {
     <Link to={`/edit-profile/${user._id}`}>
      <button>Edit your Profile</button>
     </Link>
+    <button onClick={deleteProfile}>Delete Profile</button>
     </>
     )}
 </div>

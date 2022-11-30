@@ -11,7 +11,6 @@ return (
     <div>
     <h1>LXml</h1>
     <h4>Conheça os melhores eventos perto de si e descubra quem vai estar por lá...</h4>
-    
 
   {loggedIn &&  (
     <>
@@ -33,7 +32,7 @@ return (
     </>
   )}
     </div>
-  )
+)
 }
 
 export default Home

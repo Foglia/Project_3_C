@@ -14,7 +14,7 @@ function Navbar() {
         <button>Home</button>
      </Link>
  
-  {loggedIn &&  (
+  {loggedIn && (
     <>
     <Link to="/events">
      <button>Events</button>
@@ -23,7 +23,7 @@ function Navbar() {
      <button>Your Profile</button>
     </Link>
     <button onClick={logout}>Logout</button>
-    <h3>Hello <Link to={`/profile/${user._id}`}>{user.email}!</Link></h3>
+    <h3>Olá <Link to={`/profile/${user._id}`}>{user.email}!</Link></h3>
     </>
   )}
 

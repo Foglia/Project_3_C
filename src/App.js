@@ -14,6 +14,7 @@ import Community from './pages/Community';
 import Anon from './components/Anon.component';
 import Private from './components/Private.component';
 import Comments from './components/Comments.component';
+import Community2 from './pages/Community2.page';
 
 function App() {
   return (
@@ -43,6 +44,8 @@ function App() {
         <Route path='/events' element={<Events />} />
         <Route path='/community/:id' element={<Community />} />
         <Route path='/events/search/:Name' element={<EventDetail />} />
+        <Route path='/community2/:id' element={<Community2 />} />
+
       </Routes>
     </div>
   );

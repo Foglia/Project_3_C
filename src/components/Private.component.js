@@ -6,7 +6,7 @@ import { Navigate } from 'react-router-dom'
 
 function Private(props) {
     const {loading, loggedIn} = useContext(AuthContext);
-    if(loading) return <h2>Loading...</h2>
+    if(loading) return <img src='../../public/loading1.gif'/>
     if(!loggedIn) {
     return <Navigate to='/login' />
     } else {

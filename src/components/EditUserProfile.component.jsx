@@ -73,16 +73,6 @@ function EditUserProfile() {
   console.log(error)
 }
 };
-
-const deleteProfile = async () => {
-    try {
-     await axios.delete(`${process.env.REACT_APP_API_URL}/delete-profile/${id}`, { headers: { Authorization: `Bearer ${storedToken}`}
-    });
-     navigate("/")
-  } catch(error) {
-     console.log(error)
-  }
-};
    
   return (
     <div className="Container">
@@ -113,10 +103,9 @@ const deleteProfile = async () => {
         <label htmlFor="imageUrl">Image</label>
         <input type="file" name="imageUrl" onChange={handleFileUpload} />
 
-        {loading ? <p>Loading...</p> : <p></p> }
+        {loading ? <p>Loading ... </p> : <p></p>}
         <button type="submit">Edit Profile</button>
      </form>
-        <button onClick={deleteProfile}>Delete Profile</button>
     </div>
     </div>
   )

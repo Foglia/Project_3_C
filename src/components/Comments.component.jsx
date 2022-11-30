@@ -51,7 +51,7 @@ function Comments(props) {
           cols="30"
           rows="10"
           onChange={handleDescription}
-        ></textarea>
+         ></textarea>
          <button type="submit">Add comment</button>
          <button onClick={deleteComment}>Delete Comment</button>
         {/*  <button onClick={showComments}> Show </button> */}
