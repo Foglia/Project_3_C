@@ -32,15 +32,6 @@ function Comments(props) {
     
     <div className="AddComment">
       <form class="CommentForm" onSubmit={handleSubmit}>
-{/*  <textarea
-          name="description"
-          value={title}
-          cols="40"
-          rows="1"
-          onChange={handleTitle}
-          placeholder="Nome"
-         ></textarea>
-         <br/> */}
         <textarea
           name="description"
           value={description}

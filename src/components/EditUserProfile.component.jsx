@@ -76,39 +76,38 @@ function EditUserProfile() {
    
   return (
     
-    <div className="Container">
-    <div className="EditProfilePage">
-      <h3>Edit Profile</h3>
+    <div className="EditProfilePage1">
+      <h3 class="titleEdit">Editar Perfil</h3>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="firstName">First Name</label>
+<div class="mb-5">
+<label for="Name" class="form-label">Nome</label>
         <input type="text" name="firstName" value={firstName} onChange={handleFirstName} />
-
-        <label htmlFor="lastName">Last Name</label>
-        <input type="text" name="lastName" value={lastName} onChange={handleLastName} />
-
-        <label htmlFor="gender">Gender</label>
-        <input type="text" name="gender" value={gender} onChange={handleGender} />
-
-        <label htmlFor="location">Location</label>
-        <input type="text" name="location" value={location} onChange={handleLocation} />
-        
-        <label htmlFor="aboutMe">Bio</label>
-        <textarea
-          name="aboutMe"
-          value={aboutMe}
-          cols="90"
-          rows="3"
-          onChange={handleAboutMe}
-        ></textarea> 
-
+</div>
+<div class="mb-5">
+  <label for="lastName" class="form-label">Apelido</label>
+  <input type="text" name="lastName" value={lastName} onChange={handleLastName} />
+</div>
+<div class="mb-5">
+  <label for="gender" class="form-label">Género</label>
+  <input type="text" name="gender" value={gender} onChange={handleGender }/>
+</div>
+<div class="mb-5">
+  <label for="location" class="form-label">Cidade</label>
+  <input type="text" name="location" value={location} onChange={handleLocation} />
+</div>
+<div class="mb-5">
+  <label for="About me" class="form-label">Bio</label>
+  <input type="text" name="bio" value={aboutMe} onChange={handleAboutMe} />
+</div>
         <label htmlFor="imageUrl">Image</label>
+        
         <input type="file" name="imageUrl" onChange={handleFileUpload} />
 
         {loading ? <p>Loading ... </p> : <p></p>}
-        <button type="submit">Edit Profile</button>
+        <button type="submit">Editar Perfil</button>
      </form>
     </div>
-    </div>
+
   )
 }
 

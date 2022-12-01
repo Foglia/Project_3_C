@@ -65,12 +65,16 @@ import Navbar from '../components/Navbar.component';
             <div key={event.id}>
             <img class="CommunityImg" src={event.imageUrl}/>
             <p class="maiusculas">{event.title}</p>
-            <h6>{event.location}</h6>
+            <h6 class="pinLocation"><box-icon name="map" size="20px" color="red" animation="flashing"></box-icon>{event.location}</h6>
+      
         </div>
           }
+         
          <>
+      
 <Comments refreshComments = {showComments}/>
         </>
+        <br/>
          <div>
           <h4 class="commentsTitle">Comentários</h4>
           {event && event.comments.map((comm) => {
@@ -97,7 +101,7 @@ import Navbar from '../components/Navbar.component';
             {event && event.attendance.map((att) => {
               return (
               <div key={att._id}>
-              <img className="CommAtend" src={att.imageUrl} /> 
+              <img className="CommAtend-Img" src={att.imageUrl} /> 
               <h6 class="AttendanceFirstName">{att.firstName}</h6>
               </div>
               )}
