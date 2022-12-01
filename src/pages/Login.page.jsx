@@ -38,13 +38,13 @@ function Login(props) {
   return (
   
       <div class="wrapper">
-	<div class="container">
+	<div class="lsContainer">
   <h1 class="LoginTitle">Login</h1>
       <form onSubmit={handleLoginSubmit}>
      <label>Email:</label>
       <input type="text" name="email" value={email} onChange={handleEmail} />
         <label>Password:</label> 
-        <input type="text" name="password" value={password} onChange={handlePassword} />
+        <input type="password" name="password" value={password} onChange={handlePassword} />
         <br/>
         <br/>
         <button type="submit">Login</button>

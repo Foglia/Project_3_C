@@ -27,14 +27,14 @@ function Signup(props) {
 
   return (
     <div className="wrapper">
-      <div class="container">
+      <div class="lsContainer">
       <h1 class="LoginTitle">Sign up</h1>
       <form onSubmit={handleSignupSubmit}>
         <label>Email:</label>
         <input type="text" name="email" value={email} onChange={handleEmail} />
 
         <label>Password:</label>
-        <input type="text" name="password" value={password} onChange={handlePassword} />
+        <input type="password" name="password" value={password} onChange={handlePassword} />
         <br/>
       <br/>
         <button type="submit">Sign Up</button>

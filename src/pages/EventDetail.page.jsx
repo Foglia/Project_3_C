@@ -68,26 +68,35 @@ return (
   <>
   <Navbar />
     <div className= "EventDetails">
-          <h1>{event.Name}</h1> 
-          <p><box-icon name="map" size="xs" color="red">Cidade: </box-icon>{event.Location}
+          <div className='eMainT'>
+          <h1 className='eTitle'>{event.Name}</h1> 
+          <p><box-icon name="map" size="xs" color="red"> </box-icon>{event.Location}
           <div style={{textDecoration:'none'}} dangerouslySetInnerHTML={{ __html:event.Where, }} /></p>
-          <p><b>{event.Theme}</b></p>
-          <p><b>{event.Type}</b></p>
-          <p>{event.Who}</p>
-          <p>Data: {event.StartDate}</p> 
-          <p>Termina em: {event.EndDate}</p>
+          </div>
           <img className="DetailImg" src={event.ImageUrl} />
-          <h6>Descrição</h6>
+          <div className='typeOf'>
+          <p className='nSpace'><b>Data: </b>{event.StartDate}</p>
+          <p className='nSpace'><b>Termina em: </b>{event.EndDate}</p> 
+          <p className='nSpace'><b>{event.Theme} . {event.Type}</b></p>
+          <p className='nSpace'><b>{event.Who}</b></p>
+          </div>
+          <p className="eDescription">
           <div dangerouslySetInnerHTML={{ __html:event.Text }} /> 
-          <p>Preço: <div dangerouslySetInnerHTML={{ __html:event.Price }} /> </p>
-          <div dangerouslySetInnerHTML={{ __html:event.Info }} /> 
-          <button><a href={event.Url} target="blank" style={{textDecoration:'none'}}>Link para o Evento</a></button>
+          </p>
+          <hr />
+          <p><box-icon name="dollar-circle" size="xs" color="red"></box-icon><div dangerouslySetInnerHTML={{ __html:event.Price }} /></p>
+          <box-icon name="plus-circle" size="xs" color="red"></box-icon>
+          <p><div className="saberMais" dangerouslySetInnerHTML={{ __html:event.Info }} /></p> 
+          <box-icon name="link" size="xs" color="red"></box-icon>
+          <a className="linkB" href={event.Url} target="blank">Link</a>
+          <hr />
 
     <div className='clickEvent'>
+    <div className='bAlign'>
      <StyledButton primary onClick={addAttendance} className="columnB">COMPARECER</StyledButton>
      <StyledButton onClick={addFavourite} className="columnB"> SALVAR </StyledButton> {/* botao funcional */}
-     </div> 
-
+     </div>
+    </div> 
     </div>
     </>
   )

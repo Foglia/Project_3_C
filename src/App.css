@@ -92,12 +92,13 @@ input[type=submit]:hover {
 }
 
 .HelloUser {
-  margin: 20px 30px;
+  margin: 20px 20px;
 }
 
 .UserInfo {
   display: flex;
   flex-direction: column;
+  padding: 20px;
 }
 
 .HeadEvent {
@@ -114,13 +115,12 @@ input[type=submit]:hover {
 .HeadHeader {
   margin: 5px 20px;
   background-color: #ff442f6a;
-  font-family: ave;
   border-radius: 70px;
 }
 
 .EventTitle {
   margin: 20px 10px;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: Arial, Helvetica, sans-serif
 }
 .DetailImg {
   width: 100vw;
@@ -141,10 +141,20 @@ input[type=submit]:hover {
   height: 100px;
 }
 
+.mTitle {
+  font-size: 70px;
+  text-align: center;
+  font-weight: 500;
+  color: black;
+  font-family: Arial, Helvetica, sans-serif;
+}
 
 /* PROFILE LINES */
 
-.Profile {
+.profHeader {
+  background-color: #ff442f6a;
+  border-bottom-left-radius: 10px;  
+  border-bottom-right-radius: 700px;  
 
 }
 
@@ -156,15 +166,31 @@ input[type=submit]:hover {
 }
 
 .AttImage {
-  width: 15vw;
+  width: 20vw;
   height: auto;
   border-radius: 5px;
 
 }
 
 .ImgeName {
-  border: 1px solid black;
-  padding: 20px 10px;
+  padding: 20px 10px 0px 10px;
+}
+
+.events {
+  margin-top: 30px;
+  color: rgb(87, 82, 82);
+}
+
+.pTitle {
+  color: #282c34;
+}
+
+.pSmallTitle {
+
+}
+
+.deleteP {
+  text-decoration: none;
 }
 
 .Name {
@@ -197,16 +223,22 @@ input[type=submit]:hover {
  display: flex;
  flex-direction: row;
  align-items: flex-start;
- border: solid 2px black;
  padding: 10px 20px;
 }
 
 .Column {
   flex: 50%;
   align-items: center;
-  border: solid 2px black;
+  background-color: #282c343c;
+  color: white;
+  border-radius: 30px;
   padding: 2vw 5vw;
+  margin: 4vw;
 
+}
+
+.smallBox {
+  padding: 20px 20px;
 }
 
 .rowB {
@@ -215,6 +247,14 @@ input[type=submit]:hover {
 }
 
 .clickEvent {
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+}
+
+.bAlign {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -225,3 +265,45 @@ input[type=submit]:hover {
   text-decoration: none;
 }
 
+/* EVENT DETAILS */
+
+.eTitle {
+ margin: 30px 20px 20px 2px;
+}
+
+.eMainT {
+  padding-bottom: 20px;
+  margin: 10px 30px
+}
+
+.typeOf {
+  text-align: right;
+  margin: 0px 0px 0px 20px;
+  border-bottom-left-radius: 180px;
+  padding: 30px;
+  color: grey;
+  background-color: #ff442f6a;
+}
+
+.nSpace {
+  margin: 0px 5px 0px auto;
+  font-size: 65%;
+}
+
+.eDescription {
+  padding: 20px 50px;
+  font-style: italic;
+  font-weight: 300;
+}
+
+.linkB {
+  text-decoration: none;
+  color: #282c34;
+  font-weight: 400;
+}
+
+.saberMais {
+  text-decoration: none;
+  color: #282c34;
+  font-weight: 400;
+}

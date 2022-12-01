@@ -101,8 +101,10 @@ import Navbar from '../components/Navbar.component';
             {event && event.attendance.map((att) => {
               return (
               <div key={att._id}>
-              <img className="CommAtend-Img" src={att.imageUrl} /> 
+              <img className="CommAtend-Img" src={att.imageUrl} />
+              <>
               <h6 class="AttendanceFirstName">{att.firstName}</h6>
+              </>
               </div>
               )}
             )}

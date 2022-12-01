@@ -3,6 +3,8 @@ import Carousel from 'react-bootstrap/Carousel';
 import { Link, useParams } from "react-router-dom";
 import { useContext } from 'react';
 import { AuthContext } from '../contexts/auth.context';
+import { StyledGreyButton } from "../components/Button. styled"
+
 
 function EventsCarousel() {
   const { loggedIn, user, logout } = useContext(AuthContext);
@@ -17,7 +19,7 @@ function EventsCarousel() {
           alt="First slide"
         />
         <Carousel.Caption controls={false}>
-        <h1>MONTRA</h1>
+        <h1 className='mTitle'>MONTRA</h1>
         <h3>PT</h3>         
           <p>
           Conheça os melhores eventos perto de si e descubra quem vai estar por lá...
@@ -25,18 +27,18 @@ function EventsCarousel() {
           {loggedIn &&  (
           <>
         <Link to="/events">
-        <button>Events</button>
+        <StyledGreyButton>EVENTOS</StyledGreyButton>
         </Link>
-        <button onClick={logout}>Logout</button>
+        <StyledGreyButton onClick={logout}>LOGOUT</StyledGreyButton>
           </>
           )}
           {!loggedIn && (
           <>
         <Link to="/signup">
-          <button>Signup</button>
+          <StyledGreyButton>Signup</StyledGreyButton>
         </Link>
         <Link to="/login">
-          <button>Login</button>
+          <StyledGreyButton>Login</StyledGreyButton>
         </Link>
           </>
           )}
@@ -49,7 +51,7 @@ function EventsCarousel() {
           alt="Second slide"
         />
         <Carousel.Caption>
-        <h1>MONTRA</h1>
+        <h1 className='mTitle'>MONTRA</h1>
         <h3>PT</h3>         
           <p>
           Conheça os melhores eventos perto de si e descubra quem vai estar por lá...
@@ -57,18 +59,18 @@ function EventsCarousel() {
           {loggedIn &&  (
           <>
         <Link to="/events">
-        <button>Events</button>
+        <StyledGreyButton>EVENTOS</StyledGreyButton>
         </Link>
-        <button onClick={logout}>Logout</button>
+        <StyledGreyButton onClick={logout}>LOGOUT</StyledGreyButton>
           </>
           )}
           {!loggedIn && (
           <>
         <Link to="/signup">
-          <button>Signup</button>
+          <StyledGreyButton>Signup</StyledGreyButton>
         </Link>
         <Link to="/login">
-          <button>Login</button>
+          <StyledGreyButton>Login</StyledGreyButton>
         </Link>
           </>
           )}
@@ -81,7 +83,7 @@ function EventsCarousel() {
           alt="Third slide"
         />
         <Carousel.Caption>
-          <h1>MONTRA</h1>
+          <h1 className='mTitle'>MONTRA</h1>
           <h3>PT</h3>         
           <p>
           Conheça os melhores eventos perto de si e descubra quem vai estar por lá...
@@ -89,18 +91,18 @@ function EventsCarousel() {
           {loggedIn &&  (
           <>
         <Link to="/events">
-        <button>Events</button>
+        <StyledGreyButton>EVENTOS</StyledGreyButton>
         </Link>
-        <button onClick={logout}>Logout</button>
+        <StyledGreyButton onClick={logout}>LOGOUT</StyledGreyButton>
           </>
           )}
           {!loggedIn && (
           <>
         <Link to="/signup">
-          <button>Signup</button>
+          <StyledGreyButton>Signup</StyledGreyButton>
         </Link>
         <Link to="/login">
-          <button>Login</button>
+          <StyledGreyButton>Login</StyledGreyButton>
         </Link>
           </>
           )}
@@ -113,7 +115,7 @@ function EventsCarousel() {
           alt="Third slide"
         />
         <Carousel.Caption>
-        <h1>MONTRA</h1>
+        <h1 className='mTitle'>MONTRA</h1>
         <h3>PT</h3>         
           <p>
           Conheça os melhores eventos perto de si e descubra quem vai estar por lá...
@@ -121,18 +123,18 @@ function EventsCarousel() {
           {loggedIn &&  (
           <>
         <Link to="/events">
-        <button>Events</button>
+        <StyledGreyButton>EVENTOS</StyledGreyButton>
         </Link>
-        <button onClick={logout}>Logout</button>
+        <StyledGreyButton onClick={logout}>LOGOUT</StyledGreyButton>
           </>
           )}
           {!loggedIn && (
           <>
         <Link to="/signup">
-          <button>Signup</button>
+          <StyledGreyButton>Signup</StyledGreyButton>
         </Link>
         <Link to="/login">
-          <button>Login</button>
+          <StyledGreyButton>Login</StyledGreyButton>
         </Link>
           </>
           )}
@@ -145,7 +147,7 @@ function EventsCarousel() {
           alt="First slide"
         />
       <Carousel.Caption controls={false}>
-      <h1>MONTRA</h1>
+      <h1 className='mTitle'>MONTRA</h1>
       <h3>PT</h3>         
         <p>
           Conheça os melhores eventos perto de si e descubra quem vai estar por lá...
@@ -153,18 +155,18 @@ function EventsCarousel() {
         {loggedIn &&  (
           <>
         <Link to="/events">
-        <button>Events</button>
+        <StyledGreyButton>EVENTOS</StyledGreyButton>
         </Link>
-        <button onClick={logout}>Logout</button>
+        <StyledGreyButton onClick={logout}>LOGOUT</StyledGreyButton>
           </>
           )}
           {!loggedIn && (
           <>
         <Link to="/signup">
-          <button>Signup</button>
+          <StyledGreyButton>Signup</StyledGreyButton>
         </Link>
         <Link to="/login">
-          <button>Login</button>
+          <StyledGreyButton>Login</StyledGreyButton>
         </Link>
           </>
           )}
