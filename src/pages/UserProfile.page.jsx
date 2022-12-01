@@ -68,8 +68,8 @@ const getUser = async() => {
       {user && user.atendeeEvent.map((att) => {
         return (
         <div key={att._id}>
-        <Link to={`/community2/${id}`}>
-        <img src={att.imageUrl} />
+        <Link to={`/community/${id}`}>
+        <img class="imgEvent" src={att.imageUrl} />
         <h6>{att.title}</h6>
         </Link>
         </div>
