@@ -5,6 +5,8 @@ import axios from "axios"
 import Comments from '../components/Comments.component'
 import Navbar from '../components/Navbar.component';
 
+
+
   function Community() {
   const [event, setEvent] = useState(null)
   const {id} = useParams();
@@ -25,11 +27,11 @@ import Navbar from '../components/Navbar.component';
     }, []);  
 
 
-    
+
     const showComments = async () => {
       try {
         const storedToken = localStorage.getItem('authToken') 
-        const response = await axios.get(`${process.env.REACT_APP_API_URL}/community/${id}`, { headers: { Authorization: `Bearer ${storedToken}`}});
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/events/${id}`, { headers: { Authorization: `Bearer ${storedToken}`}});
         setEvent(response.data) 
         console.log(response.data)
 
@@ -43,20 +45,16 @@ import Navbar from '../components/Navbar.component';
 
 
 
-    const deleteComments = async () => {
-      try {
-        const storedToken = localStorage.getItem('authToken') 
-        const response = await axios.delete(`${process.env.REACT_APP_API_URL}/community/${id}`, { headers: { Authorization: `Bearer ${storedToken}`}});
-        setEvent(response.data) 
-        console.log(response.data)
-
-      } catch (error) {
-   
+      const deleteComment = async (id) => {
+        try {
+          const storedToken = localStorage.getItem('authToken') 
+          await axios.delete(`${process.env.REACT_APP_API_URL}/events/${id}/delete-comment`, { headers: { Authorization: `Bearer ${storedToken}`}});
+          showComments();
+        } catch (error) {
+          console.log(error)
+          
+        }
       }
-    }
-    useEffect (() => {
-    deleteComments();  
-      }, [])
 
 
       return (
@@ -65,38 +63,42 @@ import Navbar from '../components/Navbar.component';
         <div className="Community2">
         {event && 
             <div key={event.id}>
-            <img className="CommImg" src={event.imageUrl}/>
-            <p>{event.title}</p>
-            <p>{event.location}</p>
-            <p>{event.link}</p>
+            <img class="CommunityImg" src={event.imageUrl}/>
+            <p class="maiusculas">{event.title}</p>
+            <h6>{event.location}</h6>
         </div>
           }
          <>
-          <Comments />
-         </>
+<Comments refreshComments = {showComments}/>
+        </>
          <div>
-          <h3>Comments</h3>
+          <h4 class="commentsTitle">Comentários</h4>
           {event && event.comments.map((comm) => {
               return (
+                <div class="card">
+  <div class="container">
               <div key={comm._id}>
+                
               <h6>{comm.user}</h6>
               <p>{comm.title}</p>
             <p>{comm.description}</p>
-            <button onClick={deleteComments}>Delete Comment</button> 
+            <button class="deleteComment" onClick={()=> deleteComment(comm._id)}>Apagar Comentário</button> 
               </div>
+              </div>
+              </div>
+
+             
               )}
             )}
+            <hr class="solid"></hr>
           </div>
-      
-         <div className="CommAtend">
-          <h3>Attendance</h3>
+         <div>
+          <h4 class="attendanceTitle">Attendance</h4>
             {event && event.attendance.map((att) => {
               return (
               <div key={att._id}>
-              <img className="UserImg" src={att.imageUrl} />
-              <Link to={`/profile/${att._id}`}>
-              <h6>{att.firstName}</h6>
-                </Link>
+              <img className="CommAtend" src={att.imageUrl} /> 
+              <h6 class="AttendanceFirstName">{att.firstName}</h6>
               </div>
               )}
             )}
@@ -105,5 +107,12 @@ import Navbar from '../components/Navbar.component';
           </>
         );
       }
-
+     
 export default Community;
+
+
+
+
+
+
+

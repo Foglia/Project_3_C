@@ -27,37 +27,37 @@ function Comments(props) {
     }
   };
 
-  const deleteComment = async () => {
-    try {
-      const storedToken = localStorage.getItem('authToken') 
-      await axios.delete(`${process.env.REACT_APP_API_URL}/events/${id}delete-comment/`, { headers: { Authorization: `Bearer ${storedToken}`}});
 
-    } catch (error) {
-      console.log(error)
-      
-    }
-  }
-  
   return (
+    
     <div className="AddComment">
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="title">Title</label>
-        <input type="text" name="title" value={title} onChange={handleTitle} />
-        <label htmlFor="description">Comment</label>
+      <form class="CommentForm" onSubmit={handleSubmit}>
+{/*  <textarea
+          name="description"
+          value={title}
+          cols="40"
+          rows="1"
+          onChange={handleTitle}
+          placeholder="Nome"
+         ></textarea>
+         <br/> */}
         <textarea
           name="description"
           value={description}
-          cols="30"
+          cols="40"
           rows="10"
           onChange={handleDescription}
+          placeholder="Esta exposição era incrível. Só faltava (...)"
          ></textarea>
-         <button type="submit">Add comment</button>
-         <button onClick={deleteComment}>Delete Comment</button>
+          <br/>
+         <button class= "submitComment" type="submit">Comentar</button>
       </form>
     </div>
   );
 }
 
 export default Comments;
+
+
 
 
