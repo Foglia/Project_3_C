@@ -1,8 +1,9 @@
 import React from 'react'
 import { useState, useEffect } from "react"
-import { useParams } from "react-router-dom"
+import { useParams, Link } from "react-router-dom"
 import axios from "axios"
 import Comments from '../components/Comments.component'
+import Navbar from '../components/Navbar.component';
 
   function Community() {
   const [event, setEvent] = useState(null)
@@ -59,10 +60,12 @@ import Comments from '../components/Comments.component'
 
 
       return (
+        <>
+        <Navbar />
         <div className="Community2">
         {event && 
             <div key={event.id}>
-            <img src={event.imageUrl}/>
+            <img className="CommImg" src={event.imageUrl}/>
             <p>{event.title}</p>
             <p>{event.location}</p>
             <p>{event.link}</p>
@@ -71,7 +74,6 @@ import Comments from '../components/Comments.component'
          <>
           <Comments />
          </>
-  
          <div>
           <h3>Comments</h3>
           {event && event.comments.map((comm) => {
@@ -86,18 +88,21 @@ import Comments from '../components/Comments.component'
             )}
           </div>
       
-         <div>
+         <div className="CommAtend">
           <h3>Attendance</h3>
             {event && event.attendance.map((att) => {
               return (
               <div key={att._id}>
-              <img src={att.imageUrl} />
+              <img className="UserImg" src={att.imageUrl} />
+              <Link to={`/profile/${att._id}`}>
               <h6>{att.firstName}</h6>
+                </Link>
               </div>
               )}
             )}
           </div>
           </div>
+          </>
         );
       }
 

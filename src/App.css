@@ -1,3 +1,4 @@
+
 .App {
   text-align: center;
 }
@@ -35,6 +36,18 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+body {
+  font-family:'Avenir LT W01 35 Light';
+  font-family: Helvetica, sans-serif;
+}
+
+.carousel img {
+  height:100vh;
+  width: 100%;
+  object-fit: cover;  
+  margin: auto;
 }
 
 input[type=text], select {
@@ -77,3 +90,138 @@ input[type=submit]:hover {
   padding: 20px;
   text-align: left;
 }
+
+.HelloUser {
+  margin: 20px 30px;
+}
+
+.UserInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.HeadEvent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.HeadImage {
+  width: 100vw;
+  height: auto;
+}
+
+.HeadHeader {
+  margin: 5px 20px;
+  background-color: #ff442f6a;
+  font-family: ave;
+  border-radius: 70px;
+}
+
+.EventTitle {
+  margin: 20px 10px;
+  font-family: 'Times New Roman', Times, serif;
+}
+.DetailImg {
+  width: 100vw;
+  height: auto;
+}
+
+.CommImg {
+  width: 100vw;
+  height: auto;
+}
+
+.CommAtend{
+
+}
+
+.CommAtend .UserImg{
+  width: 100px;
+  height: 100px;
+}
+
+
+/* PROFILE LINES */
+
+.Profile {
+
+}
+
+.UserImg {
+  width: 40vw;
+  height: auto;
+  border-radius: 100vw;
+
+}
+
+.AttImage {
+  width: 15vw;
+  height: auto;
+  border-radius: 5px;
+
+}
+
+.ImgeName {
+  border: 1px solid black;
+  padding: 20px 10px;
+}
+
+.Name {
+  margin: 10px auto;
+  text-align: center;
+}
+
+.UserInfo {
+  text-align: center;
+}
+
+.FavImage {
+  width: 15vw;
+  height: auto;
+  border-radius: 5px;
+}
+
+.ProfileImage {
+  width: 1vw;
+  height: auto;
+}
+
+.ProfileContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Row {
+ display: flex;
+ flex-direction: row;
+ align-items: flex-start;
+ border: solid 2px black;
+ padding: 10px 20px;
+}
+
+.Column {
+  flex: 50%;
+  align-items: center;
+  border: solid 2px black;
+  padding: 2vw 5vw;
+
+}
+
+.rowB {
+  align-items: center;
+  align-content: center;
+}
+
+.clickEvent {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  align-content: center;
+}
+
+.EventDetails {
+  text-decoration: none;
+}
+
