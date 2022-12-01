@@ -1,12 +1,17 @@
 import React from 'react';
 import axios from 'axios';
 import { useState, useEffect }  from 'react';
+import { useContext } from 'react';
 import { Link, useParams } from 'react-router-dom'
+import TNavbar from '../components/Navbar.component';
+import { AuthContext } from '../contexts/auth.context';
+import 'boxicons';
+
 
 //Token for every private page
 
 function Events() {
-  const {id} = useParams()
+  const {user} = useContext(AuthContext);
   const [events, setEvents] = useState([]); 
   const getFromBack = async () => {
     try {
@@ -25,15 +30,29 @@ function Events() {
   },[]);
 
   return (
+  <>
+  <TNavbar />  
+    <div>
+    <div className='HelloUser'>
+    {user && (
+    <h1>Olá, <h3>{user.email}!</h3></h1>
+    )}
+    </div>
+    <p>Saiba mais sobre os eventos que estão a ocorrer em Portugal</p>
+    </div>
     <div className='HeadEvent'>
     {events.map((event) => {
     return (
+  <div className='HeadHeader'>
      <div key={event.Name}>
-     <h1>{event.Name}</h1>
-     <p><b>{event.Location}</b></p>
+     <div className="EventTitle">
+     <h3>{event.Name}</h3>
+     <p className='Location'><box-icon name="map" size="sm" color="red" animation="flashing">Onde?</box-icon> <b>{event.Location}</b></p>
+    </div>
+  </div>   
      <>
      <Link to={`/events/search/${event.Name}`}> 
-     <img src={event.ImageUrl} />
+     <img className='HeadImage' src={event.ImageUrl} />
      </Link>
     </>
     </div>
@@ -41,9 +60,7 @@ function Events() {
     })}
 
     </div>
-
-    
-
+</>
   );
 }
 

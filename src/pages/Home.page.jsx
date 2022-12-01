@@ -2,16 +2,16 @@ import React from 'react'
 import { Link, useParams } from "react-router-dom";
 import { useContext } from 'react';
 import { AuthContext } from '../contexts/auth.context';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import EventsCarousel from '../components/EventsCarousel';
 
 function Home() {
 const { loggedIn, user, logout } = useContext(AuthContext);
 const {id} = useParams();
 
 return (
-    <div>
-    <h1>LXml</h1>
-    <h4>Conheça os melhores eventos perto de si e descubra quem vai estar por lá...</h4>
 
+<EventsCarousel>
   {loggedIn &&  (
     <>
     <Link to="/events">
@@ -31,8 +31,10 @@ return (
     </Link>
     </>
   )}
-    </div>
+</EventsCarousel>
+
 )
 }
+
 
 export default Home

@@ -1,14 +1,19 @@
 import React from 'react'
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import { useState, useEffect } from 'react'; //Need to map 
+import { useState, useEffect, useContext } from 'react'; //Need to map 
 import { useParams, useNavigate } from 'react-router-dom'; //to return DB params
+import Navbar from '../components/Navbar.component';
+import { AuthContext } from '../contexts/auth.context';
+
 
 function UserProfile() {
 const [user, setUser] = useState(null)
 const {id} = useParams();
 const {eventId} = useParams();
 const navigate = useNavigate();
+const { logout } = useContext(AuthContext);
+
 
 
 const storedToken = localStorage.getItem('authToken');  
@@ -31,6 +36,7 @@ const getUser = async() => {
     try {
      await axios.delete(`${process.env.REACT_APP_API_URL}/delete-profile/${id}`, { headers: { Authorization: `Bearer ${storedToken}`}
     });
+    logout();
     navigate("/")
   } catch(error) {
      console.log(error)
@@ -39,42 +45,51 @@ const getUser = async() => {
 
 
   return (
+    <>
+    <Navbar />
     <div className="UserProfile">
     {user && (
     <>
-    <img src={user.imageUrl} alt="personal photo"/>
-    <p>Nome: {user.firstName}</p>
-    <p>Apelido: {user.lastName}</p>
+    <div className='ImgeName'>
+    <img className="UserImg" src={user.imageUrl} alt="imagem pessoal"/>
+    <h4 className='Name'>{user.firstName}  {user.lastName}</h4>
+    </div>
+    <div className='UserInfo'> 
+    <p>{user.location}</p>
     <p>Género: {user.gender}</p>
-    <p>Cidade: {user.location}</p>
     <p>Sobre {user.firstName}: {user.aboutMe}</p>
+    </div>
     </>
     )}
-
-    <div>
-    <h3>Favorites</h3>
+    
+    <div className="ProfileContainer">  
+    <h3>EVENTOS</h3>   
+    <div className="Row">
+    <div className='Column'>
+    <h3>SALVOS</h3>
       {user && user.favorite.map((fav) => {
         return (
         <div key={fav._id}>
-        <h3>{fav.title}</h3>
-        <img href={fav.imageUrl} />
+        <h6>{fav.title}</h6>
+        <img className="FavImage" src={fav.imageUrl} />
+    </div>   
+        )}
+      )}
+    </div>
+    <div className='Column'>
+    <h3>VAI A ...</h3>
+      {user && user.atendeeEvent.map((att) => {
+        return (
+        <div className="Profile" key={att._id}>
+        {/* <Link to={`/community2/${id}`}> */}
+        <h6>{att.title}</h6>
+        <img className="AttImage" src={att.imageUrl} />
+        {/* </Link> */}
         </div>
         )}
       )}
     </div>
-
-    <div>
-    <h3>Attendance</h3>
-      {user && user.atendeeEvent.map((att) => {
-        return (
-        <div key={att._id}>
-        <Link to={`/community/${id}`}>
-        <img class="imgEvent" src={att.imageUrl} />
-        <h6>{att.title}</h6>
-        </Link>
-        </div>
-        )}
-      )}
+    </div>
     </div>
 
     {user && (
@@ -86,6 +101,7 @@ const getUser = async() => {
     </>
     )}
 </div>
+</>
 )
 }
 

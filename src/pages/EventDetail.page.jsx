@@ -1,9 +1,9 @@
 import React from 'react';
-import { useState, useEffect } from "react"
-import { Link, useNavigate, useParams } from "react-router-dom"
-import axios from "axios"
-// import Community from './Community';
-// import Attendance from '../components/Attendance';
+import { useState, useEffect } from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import Navbar from '../components/Navbar.component';
+import axios from "axios";
+import { StyledButton } from "../components/Button. styled"
 
 
 function EventDetail() {
@@ -65,20 +65,34 @@ function EventDetail() {
     }
    
 return (
+  <>
+  <Navbar />
     <div className= "EventDetails">
           <h1>{event.Name}</h1> 
-          <h3>{event.Location}</h3>
-          <img src= {event.ImageUrl} />
+          <p><box-icon name="map" size="xs" color="red">Cidade: </box-icon>{event.Location}
+          <div style={{textDecoration:'none'}} dangerouslySetInnerHTML={{ __html:event.Where, }} /></p>
+          <p><b>{event.Theme}</b></p>
+          <p><b>{event.Type}</b></p>
+          <p>{event.Who}</p>
+          <p>Data: {event.StartDate}</p> 
+          <p>Termina em: {event.EndDate}</p>
+          <img className="DetailImg" src={event.ImageUrl} />
           <h6>Descrição</h6>
-          <p>{event.Text}</p>
+          <div dangerouslySetInnerHTML={{ __html:event.Text }} /> 
+          <p>Preço: <div dangerouslySetInnerHTML={{ __html:event.Price }} /> </p>
+          <div dangerouslySetInnerHTML={{ __html:event.Info }} /> 
+          <button><a href={event.Url} target="blank" style={{textDecoration:'none'}}>Link para o Evento</a></button>
 
-     <button onClick={addAttendance}>Atendance</button>
-     <button onClick={addFavourite}> Favorite </button> {/* botao funcional */}
+    <div className='clickEvent'>
+     <StyledButton primary onClick={addAttendance} className="columnB">COMPARECER</StyledButton>
+     <StyledButton onClick={addFavourite} className="columnB"> SALVAR </StyledButton> {/* botao funcional */}
+     </div> 
 
     </div>
-
+    </>
   )
 }
+
 
 
 

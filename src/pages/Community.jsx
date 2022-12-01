@@ -1,8 +1,9 @@
 import React from 'react'
 import { useState, useEffect } from "react"
-import { useParams } from "react-router-dom"
+import { useParams, Link } from "react-router-dom"
 import axios from "axios"
 import Comments from '../components/Comments.component'
+import Navbar from '../components/Navbar.component';
 
 
 
@@ -57,6 +58,8 @@ import Comments from '../components/Comments.component'
 
 
       return (
+        <>
+        <Navbar />
         <div className="Community2">
         {event && 
             <div key={event.id}>
@@ -94,13 +97,14 @@ import Comments from '../components/Comments.component'
             {event && event.attendance.map((att) => {
               return (
               <div key={att._id}>
-              <img src={att.imageUrl} /> 
+              <img className="CommAtend" src={att.imageUrl} /> 
               <h6 class="AttendanceFirstName">{att.firstName}</h6>
               </div>
               )}
             )}
           </div>
           </div>
+          </>
         );
       }
      
