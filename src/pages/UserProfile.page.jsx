@@ -13,12 +13,10 @@ const {id} = useParams();
 const {eventId} = useParams();
 const navigate = useNavigate();
 const { logout } = useContext(AuthContext);
-
-
-
-const storedToken = localStorage.getItem('authToken');  
+const [numToShow, setNumToShow] = useState(5);
 
 const getUser = async() => {
+  const storedToken = localStorage.getItem('authToken');  
   try {
     const response = await axios.get(`${process.env.REACT_APP_API_URL}/profile/${id}`, { headers: { Authorization: `Bearer ${storedToken}`} 
     });
@@ -33,6 +31,7 @@ const getUser = async() => {
   }, []);  
 
   const deleteProfile = async () => {
+    const storedToken = localStorage.getItem('authToken');  
     try {
      await axios.delete(`${process.env.REACT_APP_API_URL}/delete-profile/${id}`, { headers: { Authorization: `Bearer ${storedToken}`}
     });
@@ -43,6 +42,9 @@ const getUser = async() => {
   }
 };
 
+const showMoreEvents = () => {
+  setNumToShow(numToShow + 5);
+};
 
   return (
     <>
@@ -82,16 +84,19 @@ const getUser = async() => {
     </div>
     <div className='Column'>
     <h3 className='pTitle'>VAI A ...</h3>
-      {user && user.atendeeEvent.map((att) => {
+      {user && user.atendeeEvent.slice(0, numToShow).map((att) => {      
         return (
         <div className="Profile" key={att._id}>
         <div className="smallBox">
         <p className="pSmallTitle">{att.title}</p>
+        <Link to={`/community/${att._id}`}>
         <img className="AttImage" src={att.imageUrl} />
+        </Link>
         </div>
         </div>
         )}
       )}
+    <a onClick={showMoreEvents} style={{ color: "black" }}><b>VER MAIS +</b></a>
     </div>
     </div>
     </div>

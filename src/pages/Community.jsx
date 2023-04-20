@@ -4,7 +4,7 @@ import { useParams, Link } from "react-router-dom"
 import axios from "axios"
 import Comments from '../components/Comments.component'
 import Navbar from '../components/Navbar.component';
-
+import {StyledCommButton} from "../components/Button. styled"
 
 
   function Community() {
@@ -72,38 +72,35 @@ import Navbar from '../components/Navbar.component';
          
          <>
       
-<Comments refreshComments = {showComments}/>
+       <Comments refreshComments = {showComments}/>
         </>
         <br/>
          <div>
-          <h4 class="commentsTitle">Comentários</h4>
-          {event && event.comments.map((comm) => {
+          <h4 class="commentsTitle">COMENTÁRIOS</h4>
+          
+          
+  {event && event.comments.map((comm) => {
               return (
-                <div class="card">
-  <div class="container">
-              <div key={comm._id}>
-                
-              <h6>{comm.user}</h6>
-              <p>{comm.title}</p>
-            <p>{comm.description}</p>
-            <button class="deleteComment" onClick={()=> deleteComment(comm._id)}>Apagar Comentário</button> 
+              <div className="card">
+              <div key={comm._id} className="comContainer">
+              <p>{comm.description}</p>
+              <p className="deleteComment" onClick={()=> deleteComment(comm._id)}>APAGAR</p> 
               </div>
               </div>
-              </div>
-
-             
               )}
             )}
             <hr class="solid"></hr>
           </div>
          <div>
-          <h4 class="attendanceTitle">Attendance</h4>
+          <h4 class="attendanceTitle">USUÁRIOS</h4>
             {event && event.attendance.map((att) => {
               return (
               <div key={att._id}>
               <img className="CommAtend-Img" src={att.imageUrl} />
               <>
+              <Link to={`/profile/${att._id}`}>
               <h6 class="AttendanceFirstName">{att.firstName}</h6>
+              </Link>
               </>
               </div>
               )}

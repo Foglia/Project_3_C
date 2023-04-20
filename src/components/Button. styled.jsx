@@ -2,22 +2,35 @@ import styled from "styled-components";
 
 export
 const StyledButton = styled.button`
-  display: inline-block;
+  width: auto;
+  height: 50px;
   color: red;
-  font-size: 1em;
-  margin: 1em;
-  padding: 0.25em 1em;
+  padding: 10px 30px; 
+  margin: 6px;
   border: 2px solid lightgrey;
   border-radius: 3px;
-  display: block;
+  font-family: "Shrimp";
 `;
 
 export
 const StyledGreyButton = styled.button`
+  width: 120px;
+  height: 50px;
   color: white;
   border-color: black;
   background-color: rgba(87, 82, 82, 0.178);
-  padding: 10px 30px;
-  border-radius: 1px;
+  padding: 10px 30px; 
+  border-radius: 3px;
+  font-family: "Shrimp";
+  font-width: lighter; 
+`;
+
+export
+const StyledCommButton = styled.button`
+  width: 140px;
+  color: white;
+  background-color: grey;
+  border-radius: 3px;
+  font-family: "Shrimp";
 `;
 

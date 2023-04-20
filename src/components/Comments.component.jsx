@@ -35,11 +35,11 @@ function Comments(props) {
         <textarea
           name="description"
           value={description}
-          cols="40"
+          cols="60"
           rows="10"
           onChange={handleDescription}
           placeholder="Esta exposição era incrível. Só faltava (...)"
-         ></textarea>
+          ></textarea>
           <br/>
          <button class= "submitComment" type="submit">Comentar</button>
       </form>

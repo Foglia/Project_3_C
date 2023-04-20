@@ -15,19 +15,19 @@ return (
   {loggedIn &&  (
     <>
     <Link to="/events">
-     <button>Events</button>
+     <button>EVENTOS</button>
     </Link>
-    <button onClick={logout}>Logout</button>
+    <button onClick={logout}>LOGOUT</button>
     </>
   )}
 
   {!loggedIn && (
     <>
     <Link to="/signup">
-    <button>Signup</button>
+    <button>SIGNUP</button>
     </Link>
     <Link to="/login">
-    <button>Login</button>
+    <button>LOGIN</button>
     </Link>
     </>
   )}

@@ -3,6 +3,9 @@ import { useState, useContext } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../contexts/auth.context';
+import { StyledGreyButton } from '../components/Button. styled';
+import background from "../images/ev2.jpg";
+
 
 function Login(props) {
   const [email, setEmail] = useState('');
@@ -32,38 +35,42 @@ function Login(props) {
     } catch(error) {
       const errorDescription = error.response.data.message; 
       setErrorMessage(errorDescription);  
+      console.log(error)
     }
   };
 
-  return (
-  
-      <div class="wrapper">
-	<div class="lsContainer">
-  <h1 class="LoginTitle">Login</h1>
-      <form onSubmit={handleLoginSubmit}>
-     <label>Email:</label>
-      <input type="text" name="email" value={email} onChange={handleEmail} />
-        <label>Password:</label> 
-        <input type="password" name="password" value={password} onChange={handlePassword} />
-        <br/>
-        <br/>
-        <button type="submit">Login</button>
-        </form>
+ return (
+ <div style={{ backgroundImage: `url(${background})`,
+                backgroundRepeat: 'no-repeat',
+                maxHeight: '100vh',
+                alignContent: 'left',
+                height: '100vh',
+                objectFit: 'cover',
+               }}>
+
+               
+   <div className='loginBody'>
+     <div className="main">
+	     <div className="lsContainer">
+          <form onSubmit={handleLoginSubmit}>
+          <h6 className='userGreet'>BEM-VINDO DE VOLTA!</h6>
+          <p>Por favor, insira suas informações de login para acessar sua conta.</p>
+          <label>Email</label>
+          <input type="text" name="email" value={email} onChange={handleEmail} />
+          <label>Password</label> 
+          <input type="password" name="password" value={password} onChange={handlePassword} />
+          <br/>
+          <br/>
+          <StyledGreyButton style={{ width: '200px' }} type="submit">LOGIN</StyledGreyButton>
+       </form>
       </div>
-      
-      {errorMessage && <p className="error-message">{errorMessage}</p>}
-     
-     
-      <p class= "paragraph">Don't have an account yet?</p>
-    
-      <Link to={'/signup'}> Sign Up</Link>
+       {errorMessage && <p className="error-message">{errorMessage}</p>}
+       <p>Não tens um perfil?</p>
+       <Link to={'/signup'} style={{ textDecoration: 'none', color: "black" }}><b>SIGNUP</b></Link>
     </div>
-    
-   
+  </div>
+</div>  
   );
 }
-
-			
-	
 
 export default Login;

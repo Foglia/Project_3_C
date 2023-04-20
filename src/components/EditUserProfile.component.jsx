@@ -3,6 +3,9 @@ import axios from 'axios'
 import { useState, useEffect} from 'react'
 import { useParams, useNavigate } from "react-router-dom"
 import service from "../api/service";
+import background from "../images/ev2.jpg";
+import { StyledGreyButton } from "../components/Button. styled"
+import { Link } from 'react-router-dom';
 
 function EditUserProfile() {
     const [firstName, setFirstName] = useState('');
@@ -76,12 +79,21 @@ function EditUserProfile() {
    
   return (
     
-    <div className="EditProfilePage1">
-      <h3 class="titleEdit">Editar Perfil</h3>
-      <form onSubmit={handleSubmit}>
+<div className="EditProfilePage1" 
+                style={{ 
+                backgroundImage: `url(${background})`,
+                backgroundRepeat: 'no-repeat',
+                width: "100vw",
+                height: 'auto',
+                objectFit: 'cover',
+               }}>
+
+  <h3 class="titleEdit">PERFIL DO USÚARIO</h3>
+  <br />
+  <form onSubmit={handleSubmit}>
 <div class="mb-5">
-<label for="Name" class="form-label">Nome</label>
-        <input type="text" name="firstName" value={firstName} onChange={handleFirstName} />
+  <label for="Name" class="form-label">Nome</label>
+  <input type="text" name="firstName" value={firstName} onChange={handleFirstName} />
 </div>
 <div class="mb-5">
   <label for="lastName" class="form-label">Apelido</label>
@@ -97,21 +109,20 @@ function EditUserProfile() {
 </div>
 <div class="mb-5">
   <label for="About me" class="form-label">Bio</label>
-  <input type="text" name="bio" value={aboutMe} onChange={handleAboutMe} />
+  <input type="textarea" name="bio" value={aboutMe} onChange={handleAboutMe} />
 </div>
-        <label htmlFor="imageUrl">Image</label>
-        
-        <input type="file" name="imageUrl" onChange={handleFileUpload} />
-
-        {loading ? <p>Loading ... </p> : <p></p>}
-        <button type="submit">Editar Perfil</button>
-     </form>
-    </div>
+<div>
+  <label htmlFor="imageUrl" class="form-label">Foto</label> 
+  <input type="file" onChange={handleFileUpload} />
+</div>
+  {loading ? <p>Loading ... </p> : <p></p>}
+  <StyledGreyButton type="submit">EDITAR</StyledGreyButton>
+  <StyledGreyButton type="submit">VOLTAR</StyledGreyButton>
+  </form>
+</div>
 
   )
 }
-
-
 
 export default EditUserProfile; 
 

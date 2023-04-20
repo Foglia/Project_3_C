@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useState, useEffect }  from 'react';
 import { useContext } from 'react';
 import { Link, useParams } from 'react-router-dom'
-import TNavbar from '../components/Navbar.component';
+import Navbar from '../components/Navbar.component';
 import { AuthContext } from '../contexts/auth.context';
 import 'boxicons';
 
@@ -31,14 +31,14 @@ function Events() {
 
   return (
   <>
-  <TNavbar />  
+  <Navbar />  
     <div>
     <div className='HelloUser'>
     {user && (
-    <h1>Olá, <h3>{user.email}!</h3></h1>
+    <h1>Olá, <h3>{user.firstName ? user.firstName : user.email}!</h3></h1>
     )}
-    </div>
     <p>Saiba mais sobre os eventos que estão a ocorrer em Portugal</p>
+    </div>
     </div>
     <div className='HeadEvent'>
     {events.map((event) => {

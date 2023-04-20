@@ -2,6 +2,8 @@ import React from 'react';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import background from "../images/ev2.jpg";
+import { StyledGreyButton } from '../components/Button. styled';
 
 function Signup(props) {
   const [password, setPassword] = useState('');
@@ -15,37 +17,43 @@ function Signup(props) {
   const handleSignupSubmit = async (e) => {
     e.preventDefault();
     try {
-      //try to create the user  
-      await axios.post(`${process.env.REACT_APP_API_URL}/signup`, { email, password }); //always use the process.env when trying to return a path inside your API
-      //redirect
+      await axios.post(`${process.env.REACT_APP_API_URL}/signup`, { email, password }); 
       navigate('/login');  
     } catch(error) {
-      const errorDescription = error.response.data.message; //at the server folder we have already specified the error messages, they would be recalled here  
+      const errorDescription = error.response.data.message; 
       setErrorMessage(errorDescription);  
     }
   };
 
   return (
-    <div className="wrapper">
-      <div class="lsContainer">
-      <h1 class="LoginTitle">Sign up</h1>
-      <form onSubmit={handleSignupSubmit}>
-        <label>Email:</label>
-        <input type="text" name="email" value={email} onChange={handleEmail} />
-
-        <label>Password:</label>
-        <input type="password" name="password" value={password} onChange={handlePassword} />
+<div style={{ backgroundImage: `url(${background})`,
+backgroundRepeat: 'no-repeat',
+maxHeight: '100vh',
+alignContent: 'left',
+height: '100vh',
+objectFit: 'cover',
+}}>
+<div className='loginBody'>
+  <div className="main">
+    <div className="lsContainer">
+     <form onSubmit={handleSignupSubmit}>
+       <h6 className='userGreet'>UNE-TE AO MONTRA!</h6>
+       <p>Registe-se agora para criar uma conta.</p>
+       <label className="labelHead">Email</label>
+       <input type="text" name="email" value={email} onChange={handleEmail} />
+       <label className="labelHead">Password</label> 
+       <input type="password" name="password" value={password} onChange={handlePassword} />
         <br/>
-      <br/>
-        <button type="submit">Sign Up</button>
-      </form>
-      </div>
-
-      {errorMessage && <p className="error-message">{errorMessage}</p>}
-
-      <p>Already have account?</p>
-      <Link to={'/login'}> Login</Link>
-    </div>
+        <br/>
+      <StyledGreyButton style={{ width: '200px' }} type="submit">SIGNUP</StyledGreyButton>
+     </form>
+  </div>
+  {errorMessage && <p className="error-message">{errorMessage}</p>}
+  <p>Já tens uma conta?</p>
+  <Link to={'/login'} style={{ textDecoration: 'none', color: "black" }}><b>LOG IN</b></Link>
+</div>
+</div>
+</div>  
   );
 }
 

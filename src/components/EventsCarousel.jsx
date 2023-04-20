@@ -4,41 +4,45 @@ import { Link, useParams } from "react-router-dom";
 import { useContext } from 'react';
 import { AuthContext } from '../contexts/auth.context';
 import { StyledGreyButton } from "../components/Button. styled"
-
+import $ from 'jquery'; 
 
 function EventsCarousel() {
   const { loggedIn, user, logout } = useContext(AuthContext);
   const {id} = useParams();
+
+$( document ).ready(() => {
+  $(".carousel-control-prev, .carousel-control-next, .carousel-indicators").hide();
+})
+
   return (
     <>
     <Carousel fade>
-      <Carousel.Item interval={500} >
+      <Carousel.Item interval={400} >
         <img
           className="d-block w-100"
           src="ev6.jpg"
           alt="First slide"
         />
         <Carousel.Caption controls={false}>
-        <h1 className='mTitle'>MONTRA</h1>
-        <h3>PT</h3>         
-          <p>
-          Conheça os melhores eventos perto de si e descubra quem vai estar por lá...
+        <h1 className='mTitle'>MONTRA</h1>     
+          <p className='subTitle'>
+          Descubra os melhores eventos perto de si e saiba quem vai estar por lá...
           </p>
           {loggedIn &&  (
           <>
         <Link to="/events">
-        <StyledGreyButton>EVENTOS</StyledGreyButton>
+        <StyledGreyButton className='greyButton'>EVENTOS</StyledGreyButton>
         </Link>
-        <StyledGreyButton onClick={logout}>LOGOUT</StyledGreyButton>
+        <StyledGreyButton className='greyButton' onClick={logout}>LOGOUT</StyledGreyButton>
           </>
           )}
           {!loggedIn && (
           <>
         <Link to="/signup">
-          <StyledGreyButton>Signup</StyledGreyButton>
+          <StyledGreyButton className='greyButton'>SIGNUP</StyledGreyButton>
         </Link>
         <Link to="/login">
-          <StyledGreyButton>Login</StyledGreyButton>
+          <StyledGreyButton className='greyButton'>LOGIN</StyledGreyButton>
         </Link>
           </>
           )}
@@ -52,25 +56,24 @@ function EventsCarousel() {
         />
         <Carousel.Caption>
         <h1 className='mTitle'>MONTRA</h1>
-        <h3>PT</h3>         
-          <p>
-          Conheça os melhores eventos perto de si e descubra quem vai estar por lá...
+          <p className='subTitle'>
+          Descubra os melhores eventos perto de si e saiba quem vai estar por lá...
           </p>
           {loggedIn &&  (
           <>
         <Link to="/events">
-        <StyledGreyButton>EVENTOS</StyledGreyButton>
+        <StyledGreyButton className='greyButton'>EVENTOS</StyledGreyButton>
         </Link>
-        <StyledGreyButton onClick={logout}>LOGOUT</StyledGreyButton>
+        <StyledGreyButton className='greyButton' onClick={logout}>LOGOUT</StyledGreyButton>
           </>
           )}
           {!loggedIn && (
           <>
         <Link to="/signup">
-          <StyledGreyButton>Signup</StyledGreyButton>
+          <StyledGreyButton className='greyButton'>SIGNUP</StyledGreyButton>
         </Link>
         <Link to="/login">
-          <StyledGreyButton>Login</StyledGreyButton>
+          <StyledGreyButton className='greyButton'>LOGIN</StyledGreyButton>
         </Link>
           </>
           )}
@@ -84,25 +87,24 @@ function EventsCarousel() {
         />
         <Carousel.Caption>
           <h1 className='mTitle'>MONTRA</h1>
-          <h3>PT</h3>         
-          <p>
-          Conheça os melhores eventos perto de si e descubra quem vai estar por lá...
+          <p className='subTitle'>
+          Descubra os melhores eventos perto de si e saiba quem vai estar por lá...
           </p>
           {loggedIn &&  (
           <>
         <Link to="/events">
-        <StyledGreyButton>EVENTOS</StyledGreyButton>
+        <StyledGreyButton className='greyButton'>EVENTOS</StyledGreyButton>
         </Link>
-        <StyledGreyButton onClick={logout}>LOGOUT</StyledGreyButton>
+        <StyledGreyButton onClick={logout} className='greyButton'>LOGOUT</StyledGreyButton>
           </>
           )}
           {!loggedIn && (
           <>
         <Link to="/signup">
-          <StyledGreyButton>Signup</StyledGreyButton>
+          <StyledGreyButton className='greyButton'>SIGNUP</StyledGreyButton>
         </Link>
         <Link to="/login">
-          <StyledGreyButton>Login</StyledGreyButton>
+          <StyledGreyButton className='greyButton'>LOGIN</StyledGreyButton>
         </Link>
           </>
           )}
@@ -115,26 +117,25 @@ function EventsCarousel() {
           alt="Third slide"
         />
         <Carousel.Caption>
-        <h1 className='mTitle'>MONTRA</h1>
-        <h3>PT</h3>         
-          <p>
-          Conheça os melhores eventos perto de si e descubra quem vai estar por lá...
+        <h1 className='mTitle'>MONTRA</h1>   
+          <p className='subTitle'>
+          Descubra os melhores eventos perto de si e saiba quem vai estar por lá...
          </p>
           {loggedIn &&  (
           <>
         <Link to="/events">
-        <StyledGreyButton>EVENTOS</StyledGreyButton>
+        <StyledGreyButton className='greyButton'>EVENTOS</StyledGreyButton>
         </Link>
-        <StyledGreyButton onClick={logout}>LOGOUT</StyledGreyButton>
+        <StyledGreyButton onClick={logout} className='greyButton'>LOGOUT</StyledGreyButton>
           </>
           )}
           {!loggedIn && (
           <>
         <Link to="/signup">
-          <StyledGreyButton>Signup</StyledGreyButton>
+          <StyledGreyButton className='greyButton'>SIGNUP</StyledGreyButton>
         </Link>
         <Link to="/login">
-          <StyledGreyButton>Login</StyledGreyButton>
+          <StyledGreyButton className='greyButton'>LOGIN</StyledGreyButton>
         </Link>
           </>
           )}
@@ -148,25 +149,24 @@ function EventsCarousel() {
         />
       <Carousel.Caption controls={false}>
       <h1 className='mTitle'>MONTRA</h1>
-      <h3>PT</h3>         
-        <p>
-          Conheça os melhores eventos perto de si e descubra quem vai estar por lá...
+        <p className='subTitle'>
+        Descubra os melhores eventos perto de si e saiba quem vai estar por lá...
         </p>
         {loggedIn &&  (
           <>
         <Link to="/events">
-        <StyledGreyButton>EVENTOS</StyledGreyButton>
+        <StyledGreyButton className='greyButton'>EVENTOS</StyledGreyButton>
         </Link>
-        <StyledGreyButton onClick={logout}>LOGOUT</StyledGreyButton>
+        <StyledGreyButton onClick={logout} className='greyButton'>LOGOUT</StyledGreyButton>
           </>
           )}
           {!loggedIn && (
           <>
         <Link to="/signup">
-          <StyledGreyButton>Signup</StyledGreyButton>
+        <StyledGreyButton className='greyButton'>SIGNUP</StyledGreyButton>
         </Link>
         <Link to="/login">
-          <StyledGreyButton>Login</StyledGreyButton>
+          <StyledGreyButton className='greyButton'>LOGIN</StyledGreyButton>
         </Link>
           </>
           )}
